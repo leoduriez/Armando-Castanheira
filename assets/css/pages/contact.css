@@ -1,0 +1,436 @@
+/**
+ * Contact & Devis Pages Styles
+ *
+ * @package Armando_Castanheira
+ */
+
+/* ==========================================================================
+   PAGE LAYOUT
+   ========================================================================== */
+
+.page-contact,
+.page-devis {
+    background-color: var(--color-cream);
+}
+
+/* ==========================================================================
+   PAGE HEADER
+   ========================================================================== */
+
+.page-header--contact {
+    background: url('../../images/headers/header-contact.webp') center/cover no-repeat;
+    padding: clamp(120px, 20vh, 200px) 0 clamp(100px, 15vh, 150px);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header--contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   CONTACT CARD (Photo + Info)
+   ========================================================================== */
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-card__photo {
+    flex-shrink: 0;
+}
+
+.contact-card__photo img {
+    width: clamp(180px, 25vw, 280px);
+    height: auto;
+    border-radius: 0;
+}
+
+.contact-card__info {
+    color: var(--color-brown-dark);
+}
+
+.contact-card__name {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-card__description {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.8;
+    color: var(--color-gray);
+    margin: 0;
+    font-weight: 400;
+}
+
+.contact-card__description p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-card__description p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-card__email {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--color-brown-dark);
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    transition: opacity var(--transition-fast);
+}
+
+.contact-card__email:hover {
+    opacity: 0.7;
+}
+
+.contact-card__email svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* ==========================================================================
+   FORM SECTION
+   ========================================================================== */
+
+.section-form {
+    padding: var(--spacing-3xl) 0;
+}
+
+.form-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.form-title {
+    font-family: var(--font-title);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--color-brown-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.form-link {
+    font-family: var(--font-title);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--color-brown-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+    text-underline-offset: 4px;
+    transition: opacity var(--transition-fast);
+}
+
+.form-link:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   FORM PANELS (Toggle between Contact & Devis)
+   ========================================================================== */
+
+.form-panel {
+    display: none;
+}
+
+.form-panel.is-active {
+    display: block;
+}
+
+/* ==========================================================================
+   FORM STYLES
+   ========================================================================== */
+
+.contact-form {
+    max-width: 800px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group--full {
+    grid-column: 1 / -1;
+}
+
+.form-group--half {
+    grid-column: span 1;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-brown-dark);
+    background-color: transparent;
+    border: 1px solid rgba(74, 59, 49, 0.3);
+    border-radius: 4px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(74, 59, 49, 0.5);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--color-brown-dark);
+    box-shadow: 0 0 0 3px rgba(74, 59, 49, 0.1);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: rgba(74, 59, 49, 0.6);
+    margin-top: var(--spacing-md);
+}
+
+/* ==========================================================================
+   SUBMIT BUTTON
+   ========================================================================== */
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-cream);
+    background-color: var(--color-brown-dark);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-submit:hover {
+    background-color: #3a2f28;
+    transform: translateY(-2px);
+}
+
+.btn-submit svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* ==========================================================================
+   DEVIS SPECIFIC STYLES
+   ========================================================================== */
+
+.form-section-title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-brown-dark);
+    margin: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.form-section-title:first-of-type {
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Garder le dégradé sombre visible sur mobile */
+    .page-header--contact::before {
+        height: 150px;
+    }
+    
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-card__photo img {
+        width: 200px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group--half {
+        grid-column: 1;
+    }
+    
+    .form-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header--contact {
+        padding: clamp(100px, 15vh, 150px) 0 clamp(80px, 12vh, 120px);
+    }
+    
+    .contact-card__photo img {
+        width: 160px;
+    }
+}
+
+/* ==========================================================================
+   POPUP CONFIRMATION
+   ========================================================================== */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    position: relative;
+    max-width: 450px;
+    max-height: 50vh;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.is-active .popup-content {
+    transform: scale(1);
+}
+
+.popup-image {
+    display: block;
+    max-width: 100%;
+    max-height: 45vh;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.popup-close:hover {
+    transform: scale(1.1);
+    background-color: var(--color-cream);
+}
+
+.popup-close svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-brown-dark);
+    stroke-width: 2;
+    fill: none;
+}
+
+@media (max-width: 768px) {
+    .popup-close {
+        top: -10px;
+        right: -10px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .popup-close svg {
+        width: 16px;
+        height: 16px;
+    }
+}

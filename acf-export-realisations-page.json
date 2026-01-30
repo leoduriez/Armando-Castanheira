@@ -1,0 +1,762 @@
+[
+    {
+        "key": "group_realisations_page_unique",
+        "title": "Réalisations - Page unique",
+        "fields": [
+            {
+                "key": "field_real_1_titre",
+                "label": "Titre – Réalisation 1",
+                "name": "realisation_1_titre",
+                "type": "text",
+                "default_value": "BAR ONYX MIEL"
+            },
+            {
+                "key": "field_real_1_image",
+                "label": "Image – Réalisation 1",
+                "name": "realisation_1_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_1_image2",
+                "label": "Image 2 (Après) – Réalisation 1",
+                "name": "realisation_1_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "instructions": "Optionnel : pour les avant/après"
+            },
+            {
+                "key": "field_real_1_description",
+                "label": "Description – Réalisation 1",
+                "name": "realisation_1_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_1_categorie",
+                "label": "Catégorie – Réalisation 1",
+                "name": "realisation_1_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "cuisine"
+            },
+            {
+                "key": "field_real_1_is_compare",
+                "label": "Mode Avant/Après – Réalisation 1",
+                "name": "realisation_1_is_compare",
+                "type": "true_false",
+                "ui": 1,
+                "ui_on_text": "Oui",
+                "ui_off_text": "Non"
+            },
+
+            {
+                "key": "field_real_2_titre",
+                "label": "Titre – Réalisation 2",
+                "name": "realisation_2_titre",
+                "type": "text",
+                "default_value": "PLAN DE TRAVAIL ET CRÉDENCE"
+            },
+            {
+                "key": "field_real_2_image",
+                "label": "Image – Réalisation 2",
+                "name": "realisation_2_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_2_image2",
+                "label": "Image 2 (Après) – Réalisation 2",
+                "name": "realisation_2_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_2_description",
+                "label": "Description – Réalisation 2",
+                "name": "realisation_2_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_2_categorie",
+                "label": "Catégorie – Réalisation 2",
+                "name": "realisation_2_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "cuisine"
+            },
+            {
+                "key": "field_real_2_is_compare",
+                "label": "Mode Avant/Après – Réalisation 2",
+                "name": "realisation_2_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_3_titre",
+                "label": "Titre – Réalisation 3",
+                "name": "realisation_3_titre",
+                "type": "text",
+                "default_value": "PLAN DE TRAVAIL ET CRÉDENCE"
+            },
+            {
+                "key": "field_real_3_image",
+                "label": "Image – Réalisation 3",
+                "name": "realisation_3_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_3_image2",
+                "label": "Image 2 (Après) – Réalisation 3",
+                "name": "realisation_3_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_3_description",
+                "label": "Description – Réalisation 3",
+                "name": "realisation_3_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_3_categorie",
+                "label": "Catégorie – Réalisation 3",
+                "name": "realisation_3_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "cuisine"
+            },
+            {
+                "key": "field_real_3_is_compare",
+                "label": "Mode Avant/Après – Réalisation 3",
+                "name": "realisation_3_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_4_titre",
+                "label": "Titre – Réalisation 4",
+                "name": "realisation_4_titre",
+                "type": "text",
+                "default_value": "PLAN DE TRAVAIL ET CRÉDENCE"
+            },
+            {
+                "key": "field_real_4_image",
+                "label": "Image – Réalisation 4",
+                "name": "realisation_4_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_4_image2",
+                "label": "Image 2 (Après) – Réalisation 4",
+                "name": "realisation_4_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_4_description",
+                "label": "Description – Réalisation 4",
+                "name": "realisation_4_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_4_categorie",
+                "label": "Catégorie – Réalisation 4",
+                "name": "realisation_4_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "cuisine"
+            },
+            {
+                "key": "field_real_4_is_compare",
+                "label": "Mode Avant/Après – Réalisation 4",
+                "name": "realisation_4_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_5_titre",
+                "label": "Titre – Réalisation 5",
+                "name": "realisation_5_titre",
+                "type": "text",
+                "default_value": "FABRICATION ET INSTALLATION BAIGNOIRE ET ÉVIER"
+            },
+            {
+                "key": "field_real_5_image",
+                "label": "Image – Réalisation 5",
+                "name": "realisation_5_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_5_image2",
+                "label": "Image 2 (Après) – Réalisation 5",
+                "name": "realisation_5_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_5_description",
+                "label": "Description – Réalisation 5",
+                "name": "realisation_5_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_5_categorie",
+                "label": "Catégorie – Réalisation 5",
+                "name": "realisation_5_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "salle-de-bain"
+            },
+            {
+                "key": "field_real_5_is_compare",
+                "label": "Mode Avant/Après – Réalisation 5",
+                "name": "realisation_5_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_6_titre",
+                "label": "Titre – Réalisation 6",
+                "name": "realisation_6_titre",
+                "type": "text",
+                "default_value": "FABRICATION ET INSTALLATION BAIGNOIRE ET ÉVIER"
+            },
+            {
+                "key": "field_real_6_image",
+                "label": "Image – Réalisation 6",
+                "name": "realisation_6_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_6_image2",
+                "label": "Image 2 (Après) – Réalisation 6",
+                "name": "realisation_6_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_6_description",
+                "label": "Description – Réalisation 6",
+                "name": "realisation_6_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_6_categorie",
+                "label": "Catégorie – Réalisation 6",
+                "name": "realisation_6_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "salle-de-bain"
+            },
+            {
+                "key": "field_real_6_is_compare",
+                "label": "Mode Avant/Après – Réalisation 6",
+                "name": "realisation_6_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_7_titre",
+                "label": "Titre – Réalisation 7",
+                "name": "realisation_7_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION ESCALIER"
+            },
+            {
+                "key": "field_real_7_image",
+                "label": "Image – Réalisation 7",
+                "name": "realisation_7_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_7_image2",
+                "label": "Image 2 (Après) – Réalisation 7",
+                "name": "realisation_7_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_7_description",
+                "label": "Description – Réalisation 7",
+                "name": "realisation_7_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_7_categorie",
+                "label": "Catégorie – Réalisation 7",
+                "name": "realisation_7_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_7_is_compare",
+                "label": "Mode Avant/Après – Réalisation 7",
+                "name": "realisation_7_is_compare",
+                "type": "true_false",
+                "ui": 1,
+                "default_value": 1
+            },
+
+            {
+                "key": "field_real_8_titre",
+                "label": "Titre – Réalisation 8",
+                "name": "realisation_8_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION TABLE"
+            },
+            {
+                "key": "field_real_8_image",
+                "label": "Image – Réalisation 8",
+                "name": "realisation_8_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_8_image2",
+                "label": "Image 2 (Après) – Réalisation 8",
+                "name": "realisation_8_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_8_description",
+                "label": "Description – Réalisation 8",
+                "name": "realisation_8_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_8_categorie",
+                "label": "Catégorie – Réalisation 8",
+                "name": "realisation_8_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_8_is_compare",
+                "label": "Mode Avant/Après – Réalisation 8",
+                "name": "realisation_8_is_compare",
+                "type": "true_false",
+                "ui": 1,
+                "default_value": 1
+            },
+
+            {
+                "key": "field_real_9_titre",
+                "label": "Titre – Réalisation 9",
+                "name": "realisation_9_titre",
+                "type": "text",
+                "default_value": "INSTALLATION SOL DAMIER"
+            },
+            {
+                "key": "field_real_9_image",
+                "label": "Image – Réalisation 9",
+                "name": "realisation_9_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_9_image2",
+                "label": "Image 2 (Après) – Réalisation 9",
+                "name": "realisation_9_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_9_description",
+                "label": "Description – Réalisation 9",
+                "name": "realisation_9_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_9_categorie",
+                "label": "Catégorie – Réalisation 9",
+                "name": "realisation_9_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_9_is_compare",
+                "label": "Mode Avant/Après – Réalisation 9",
+                "name": "realisation_9_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_10_titre",
+                "label": "Titre – Réalisation 10",
+                "name": "realisation_10_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION SOL EN MARBRE MOSAÏQUE"
+            },
+            {
+                "key": "field_real_10_image",
+                "label": "Image – Réalisation 10",
+                "name": "realisation_10_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_10_image2",
+                "label": "Image 2 (Après) – Réalisation 10",
+                "name": "realisation_10_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_10_description",
+                "label": "Description – Réalisation 10",
+                "name": "realisation_10_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_10_categorie",
+                "label": "Catégorie – Réalisation 10",
+                "name": "realisation_10_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_10_is_compare",
+                "label": "Mode Avant/Après – Réalisation 10",
+                "name": "realisation_10_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_11_titre",
+                "label": "Titre – Réalisation 11",
+                "name": "realisation_11_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION SOL"
+            },
+            {
+                "key": "field_real_11_image",
+                "label": "Image – Réalisation 11",
+                "name": "realisation_11_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_11_image2",
+                "label": "Image 2 (Après) – Réalisation 11",
+                "name": "realisation_11_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_11_description",
+                "label": "Description – Réalisation 11",
+                "name": "realisation_11_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_11_categorie",
+                "label": "Catégorie – Réalisation 11",
+                "name": "realisation_11_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_11_is_compare",
+                "label": "Mode Avant/Après – Réalisation 11",
+                "name": "realisation_11_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_12_titre",
+                "label": "Titre – Réalisation 12",
+                "name": "realisation_12_titre",
+                "type": "text",
+                "default_value": "INSTALLATION PLAN DE CUISINE"
+            },
+            {
+                "key": "field_real_12_image",
+                "label": "Image – Réalisation 12",
+                "name": "realisation_12_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_12_image2",
+                "label": "Image 2 (Après) – Réalisation 12",
+                "name": "realisation_12_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_12_description",
+                "label": "Description – Réalisation 12",
+                "name": "realisation_12_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_12_categorie",
+                "label": "Catégorie – Réalisation 12",
+                "name": "realisation_12_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "cuisine"
+            },
+            {
+                "key": "field_real_12_is_compare",
+                "label": "Mode Avant/Après – Réalisation 12",
+                "name": "realisation_12_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_13_titre",
+                "label": "Titre – Réalisation 13",
+                "name": "realisation_13_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION SOL MARBRE"
+            },
+            {
+                "key": "field_real_13_image",
+                "label": "Image – Réalisation 13",
+                "name": "realisation_13_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_13_image2",
+                "label": "Image 2 (Après) – Réalisation 13",
+                "name": "realisation_13_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_13_description",
+                "label": "Description – Réalisation 13",
+                "name": "realisation_13_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_13_categorie",
+                "label": "Catégorie – Réalisation 13",
+                "name": "realisation_13_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_13_is_compare",
+                "label": "Mode Avant/Après – Réalisation 13",
+                "name": "realisation_13_is_compare",
+                "type": "true_false",
+                "ui": 1
+            },
+
+            {
+                "key": "field_real_14_titre",
+                "label": "Titre – Réalisation 14",
+                "name": "realisation_14_titre",
+                "type": "text",
+                "default_value": "RÉNOVATION SOL"
+            },
+            {
+                "key": "field_real_14_image",
+                "label": "Image – Réalisation 14",
+                "name": "realisation_14_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_14_image2",
+                "label": "Image 2 (Après) – Réalisation 14",
+                "name": "realisation_14_image2",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_real_14_description",
+                "label": "Description – Réalisation 14",
+                "name": "realisation_14_description",
+                "type": "wysiwyg",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0
+            },
+            {
+                "key": "field_real_14_categorie",
+                "label": "Catégorie – Réalisation 14",
+                "name": "realisation_14_categorie",
+                "type": "select",
+                "choices": {
+                    "cuisine": "Cuisine",
+                    "salle-de-bain": "Salle de bain",
+                    "autre": "Autre"
+                },
+                "default_value": "autre"
+            },
+            {
+                "key": "field_real_14_is_compare",
+                "label": "Mode Avant/Après – Réalisation 14",
+                "name": "realisation_14_is_compare",
+                "type": "true_false",
+                "ui": 1
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "realisations"
+                }
+            ],
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/template-realisations.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]

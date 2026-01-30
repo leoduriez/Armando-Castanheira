@@ -1,0 +1,123 @@
+/**
+ * 404 Error Page Styles
+ *
+ * @package Armando_Castanheira
+ */
+
+/* ==========================================================================
+   PAGE 404
+   ========================================================================== */
+
+.page-404 {
+    min-height: calc(100vh - 200px);
+    height: auto;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../images/common/page-404.webp') center/cover no-repeat;
+    position: relative;
+}
+
+body.error404 {
+    overflow: hidden;
+}
+
+/* Dark gradient overlay at the top */
+.page-404::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.error-404 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.error-404__content {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.error-404__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.error-404__message {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-style: italic;
+    color: #ffffff;
+    margin: 0 0 0.8rem;
+    opacity: 1;
+}
+
+.error-404__btn {
+    display: inline-block;
+    padding: clamp(8px, 1.8vw, 10px) clamp(18px, 3.5vw, 26px);
+    background-color: var(--color-brown-dark);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all var(--transition-base);
+}
+
+.error-404__btn:hover {
+    background-color: #3a302c;
+    color: var(--color-white);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    body.error404 {
+        overflow: auto;
+        height: auto;
+    }
+    
+    .page-404 {
+        height: auto;
+        min-height: calc(100vh - 150px);
+        overflow: visible;
+    }
+    
+    .page-404::before {
+        height: 150px;
+    }
+    
+    .error-404__content {
+        padding: 1rem;
+        margin-top: 5vh;
+    }
+    
+    .error-404__title {
+        font-size: 1.6rem;
+    }
+    
+    .error-404__message {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}

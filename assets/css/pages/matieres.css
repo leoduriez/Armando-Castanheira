@@ -1,0 +1,456 @@
+/**
+ * Page Matières - Styles
+ * Galerie 2x2 avec bouton "Voir Plus"
+ */
+
+/* ==========================================================================
+   DECORATIVE VECTORS
+   ========================================================================== */
+
+.decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    width: clamp(150px, 22vw, 280px);
+    opacity: 0.9;
+}
+
+/* Position gauche - collé au bord */
+.decor--left {
+    left: 0;
+    transform: translateX(-30%);
+}
+
+/* Position droite - collé au bord */
+.decor--right {
+    right: 0;
+    left: auto;
+    transform: translateX(30%);
+}
+
+/* Positions verticales - 2 vectors */
+.section-matieres-gallery[data-vectors="2"] .decor--pos-1 { top: 20%; }
+.section-matieres-gallery[data-vectors="2"] .decor--pos-2 { top: 70%; }
+
+/* Positions verticales - 3 vectors */
+.section-matieres-gallery[data-vectors="3"] .decor--pos-1 { top: 10%; }
+.section-matieres-gallery[data-vectors="3"] .decor--pos-2 { top: 40%; }
+.section-matieres-gallery[data-vectors="3"] .decor--pos-3 { top: 75%; }
+
+/* Positions verticales - 4 vectors */
+.section-matieres-gallery[data-vectors="4"] .decor--pos-1 { top: 10%; }
+.section-matieres-gallery[data-vectors="4"] .decor--pos-2 { top: 35%; }
+.section-matieres-gallery[data-vectors="4"] .decor--pos-3 { top: 60%; }
+.section-matieres-gallery[data-vectors="4"] .decor--pos-4 { top: 85%; }
+
+/* Positions verticales - 6 vectors */
+.section-matieres-gallery[data-vectors="6"] .decor--pos-1 { top: 5%; }
+.section-matieres-gallery[data-vectors="6"] .decor--pos-2 { top: 22%; }
+.section-matieres-gallery[data-vectors="6"] .decor--pos-3 { top: 40%; }
+.section-matieres-gallery[data-vectors="6"] .decor--pos-4 { top: 58%; }
+.section-matieres-gallery[data-vectors="6"] .decor--pos-5 { top: 75%; }
+.section-matieres-gallery[data-vectors="6"] .decor--pos-6 { top: 92%; }
+
+/* Positions verticales - 8 vectors */
+.section-matieres-gallery[data-vectors="8"] .decor--pos-1 { top: 2%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-2 { top: 14%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-3 { top: 26%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-4 { top: 38%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-5 { top: 50%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-6 { top: 62%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-7 { top: 74%; }
+.section-matieres-gallery[data-vectors="8"] .decor--pos-8 { top: 88%; }
+
+/* Masquer les décorations sur mobile */
+@media (max-width: 768px) {
+    .decor {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   PAGE BACKGROUND
+   ========================================================================== */
+
+.page-matieres {
+    background-color: #f2f2f0;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.page-header--matieres {
+    background: url('../../images/headers/header-matiere.webp') center/cover no-repeat;
+    padding: clamp(120px, 20vh, 200px) 0 clamp(80px, 12vh, 120px);
+    text-align: center;
+    position: relative;
+}
+
+.page-header--matieres::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-header--matieres .page-title {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-family: var(--font-title, 'Cormorant Garamond', serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    margin: 0;
+}
+
+/* ==========================================================================
+   FILTER BAR
+   ========================================================================== */
+
+.page-matieres .filter-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.page-matieres .section-filter {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    background-color: rgba(242, 242, 240, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.page-matieres .filter-bar__list {
+    display: flex;
+    gap: clamp(2rem, 8vw, 5rem);
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.page-matieres .filter-btn {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    color: var(--color-gray);
+    background: none;
+    border: none;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.page-matieres .filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-brown-dark);
+    transition: width var(--transition-base);
+}
+
+.page-matieres .filter-btn:hover,
+.page-matieres .filter-btn:focus {
+    color: var(--color-brown-dark);
+}
+
+.page-matieres .filter-btn.active {
+    color: var(--color-brown-dark);
+    font-weight: 500;
+}
+
+.page-matieres .filter-btn.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   SECTION GALLERY
+   ========================================================================== */
+
+.section-matieres-gallery {
+    padding: clamp(40px, 6vw, 80px) 0 clamp(40px, 6vw, 80px);
+    position: relative;
+    overflow: visible;
+    min-height: calc(100vh - 200px); /* Assure que la section prend assez de place */
+}
+
+.section-matieres-gallery .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+    position: relative;
+    z-index: 10;
+}
+
+/* ==========================================================================
+   GRILLE 2 COLONNES
+   ========================================================================== */
+
+.matieres-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+}
+
+/* Centrer le dernier élément s'il est seul sur sa ligne */
+.matiere-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   ITEM MATIÈRE
+   ========================================================================== */
+
+.matiere-item {
+    text-align: center;
+}
+
+/* Item caché */
+.matiere-item--hidden {
+    display: none;
+}
+
+/* Animation d'apparition */
+.matiere-item.fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   CARTE INTERACTIVE
+   ========================================================================== */
+
+.matiere-item__card {
+    position: relative;
+    width: 391px;
+    height: 227px;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet hover sur la carte */
+.matiere-item__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.matiere-item__card:hover .matiere-item__image {
+    transform: scale(1.05);
+}
+
+/* Contenu texte (arrière-plan) */
+.matiere-item__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--Color-1, #F2F2F0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.matiere-item__content-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.matiere-item__content-text {
+    font-family: var(--font-body, 'Archivo', sans-serif);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #000;
+    opacity: 0.9;
+}
+
+/* Image (premier plan) */
+.matiere-item__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    will-change: transform;
+}
+
+.matiere-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* État actif : l'image slide vers le haut */
+.matiere-item__card.active .matiere-item__image {
+    transform: translateY(-100%);
+}
+
+/* Titre sous la carte */
+.matiere-item__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 100%;
+    text-align: center;
+    margin: 15px 0 0;
+}
+
+/* ==========================================================================
+   BOUTON VOIR PLUS
+   ========================================================================== */
+
+.voir-plus-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(40px, 6vw, 70px);
+}
+
+.btn--voir-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: clamp(12px, 2.5vw, 14px) clamp(24px, 5vw, 36px);
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    background-color: var(--color-brown-dark);
+    color: var(--color-white);
+    white-space: nowrap;
+}
+
+.btn--voir-plus:hover {
+    background-color: #3a302c;
+    color: var(--color-white);
+}
+
+.btn--voir-plus:focus {
+    background-color: #3a302c;
+    color: var(--color-white);
+}
+
+/* Cacher le bouton quand tout est affiché */
+.btn--voir-plus.hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .page-header--matieres {
+        padding: 140px 0 80px;
+    }
+    
+    .page-header--matieres::before {
+        height: 150px;
+    }
+    
+    .page-matieres .section-filter {
+        padding: clamp(10px, 1.5vh, 12px) 0;
+        z-index: 500; /* Réduit pour passer sous le menu mobile (z-index: 1000) */
+    }
+    
+    .page-matieres .filter-bar__list {
+        gap: 0.75rem 1rem;
+    }
+    
+    .page-matieres .filter-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
+    
+    /* Grille 1 colonne sur mobile */
+    .matieres-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .matiere-item__card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 391 / 227;
+    }
+    
+    .matiere-item__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 391 / 227;
+    }
+    
+    .matiere-item__title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-matieres .filter-bar__list {
+        gap: 0.5rem 0.8rem;
+    }
+    
+    .page-matieres .filter-btn {
+        font-size: 0.75rem;
+    }
+    
+    .matiere-item__title {
+        font-size: 18px;
+    }
+}

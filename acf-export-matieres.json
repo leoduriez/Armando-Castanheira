@@ -1,0 +1,835 @@
+[
+    {
+        "key": "group_matieres_page_unique",
+        "title": "Matières - Page unique",
+        "fields": [
+            {
+                "key": "field_matiere_1_image",
+                "label": "Image – STEEL GREY",
+                "name": "matiere_1_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_1_description",
+                "label": "Description – STEEL GREY",
+                "name": "matiere_1_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_1_categorie",
+                "label": "Catégorie – STEEL GREY",
+                "name": "matiere_1_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_2_image",
+                "label": "Image – GRANIT DU TARN",
+                "name": "matiere_2_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_2_description",
+                "label": "Description – GRANIT DU TARN",
+                "name": "matiere_2_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_2_categorie",
+                "label": "Catégorie – GRANIT DU TARN",
+                "name": "matiere_2_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_3_image",
+                "label": "Image – VISCOUNT WHITE",
+                "name": "matiere_3_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_3_description",
+                "label": "Description – VISCOUNT WHITE",
+                "name": "matiere_3_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_3_categorie",
+                "label": "Catégorie – VISCOUNT WHITE",
+                "name": "matiere_3_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_4_image",
+                "label": "Image – STAR GALAXY",
+                "name": "matiere_4_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_4_description",
+                "label": "Description – STAR GALAXY",
+                "name": "matiere_4_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_4_categorie",
+                "label": "Catégorie – STAR GALAXY",
+                "name": "matiere_4_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_5_image",
+                "label": "Image – GRANIT NOIR ABSOLU",
+                "name": "matiere_5_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_5_description",
+                "label": "Description – GRANIT NOIR ABSOLU",
+                "name": "matiere_5_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_5_categorie",
+                "label": "Catégorie – GRANIT NOIR ABSOLU",
+                "name": "matiere_5_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_6_image",
+                "label": "Image – BLUE PEARL",
+                "name": "matiere_6_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_6_description",
+                "label": "Description – BLUE PEARL",
+                "name": "matiere_6_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_6_categorie",
+                "label": "Catégorie – BLUE PEARL",
+                "name": "matiere_6_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "granit"
+            },
+            {
+                "key": "field_matiere_7_image",
+                "label": "Image – BIANCA GIOIA",
+                "name": "matiere_7_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_7_description",
+                "label": "Description – BIANCA GIOIA",
+                "name": "matiere_7_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_7_categorie",
+                "label": "Catégorie – BIANCA GIOIA",
+                "name": "matiere_7_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_8_image",
+                "label": "Image – INFINITY",
+                "name": "matiere_8_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_8_description",
+                "label": "Description – INFINITY",
+                "name": "matiere_8_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_8_categorie",
+                "label": "Catégorie – INFINITY",
+                "name": "matiere_8_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_9_image",
+                "label": "Image – PATAGONIA",
+                "name": "matiere_9_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_9_description",
+                "label": "Description – PATAGONIA",
+                "name": "matiere_9_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_9_categorie",
+                "label": "Catégorie – PATAGONIA",
+                "name": "matiere_9_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_10_image",
+                "label": "Image – PERLA VENATA",
+                "name": "matiere_10_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_10_description",
+                "label": "Description – PERLA VENATA",
+                "name": "matiere_10_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_10_categorie",
+                "label": "Catégorie – PERLA VENATA",
+                "name": "matiere_10_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_11_image",
+                "label": "Image – AZUL MACAUBAS",
+                "name": "matiere_11_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_11_description",
+                "label": "Description – AZUL MACAUBAS",
+                "name": "matiere_11_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_11_categorie",
+                "label": "Catégorie – AZUL MACAUBAS",
+                "name": "matiere_11_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_12_image",
+                "label": "Image – SEA PEARL",
+                "name": "matiere_12_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_12_description",
+                "label": "Description – SEA PEARL",
+                "name": "matiere_12_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_12_categorie",
+                "label": "Catégorie – SEA PEARL",
+                "name": "matiere_12_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_13_image",
+                "label": "Image – WHITE MACAUBAS",
+                "name": "matiere_13_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_13_description",
+                "label": "Description – WHITE MACAUBAS",
+                "name": "matiere_13_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_13_categorie",
+                "label": "Catégorie – WHITE MACAUBAS",
+                "name": "matiere_13_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_14_image",
+                "label": "Image – TAJ MAHAL",
+                "name": "matiere_14_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_14_description",
+                "label": "Description – TAJ MAHAL",
+                "name": "matiere_14_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_14_categorie",
+                "label": "Catégorie – TAJ MAHAL",
+                "name": "matiere_14_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "quartzite"
+            },
+            {
+                "key": "field_matiere_15_image",
+                "label": "Image – MARBRE DE VILLEFRANCHE-DE-ROUERGUE",
+                "name": "matiere_15_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_15_description",
+                "label": "Description – MARBRE DE VILLEFRANCHE-DE-ROUERGUE",
+                "name": "matiere_15_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_15_categorie",
+                "label": "Catégorie – MARBRE DE VILLEFRANCHE-DE-ROUERGUE",
+                "name": "matiere_15_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_16_image",
+                "label": "Image – MARBRE DU LANGUEDOC",
+                "name": "matiere_16_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_16_description",
+                "label": "Description – MARBRE DU LANGUEDOC",
+                "name": "matiere_16_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_16_categorie",
+                "label": "Catégorie – MARBRE DU LANGUEDOC",
+                "name": "matiere_16_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_17_image",
+                "label": "Image – MARBRE DE SAINT-BEAUZIRE",
+                "name": "matiere_17_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_17_description",
+                "label": "Description – MARBRE DE SAINT-BEAUZIRE",
+                "name": "matiere_17_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_17_categorie",
+                "label": "Catégorie – MARBRE DE SAINT-BEAUZIRE",
+                "name": "matiere_17_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_18_image",
+                "label": "Image – MARBRE DE LA COURONNE",
+                "name": "matiere_18_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_18_description",
+                "label": "Description – MARBRE DE LA COURONNE",
+                "name": "matiere_18_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_18_categorie",
+                "label": "Catégorie – MARBRE DE LA COURONNE",
+                "name": "matiere_18_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_19_image",
+                "label": "Image – MARBRE DE TRETS",
+                "name": "matiere_19_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_19_description",
+                "label": "Description – MARBRE DE TRETS",
+                "name": "matiere_19_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_19_categorie",
+                "label": "Catégorie – MARBRE DE TRETS",
+                "name": "matiere_19_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_20_image",
+                "label": "Image – MARBRE GRAND ANTIQUE D'AUBERT",
+                "name": "matiere_20_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_20_description",
+                "label": "Description – MARBRE GRAND ANTIQUE D'AUBERT",
+                "name": "matiere_20_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_20_categorie",
+                "label": "Catégorie – MARBRE GRAND ANTIQUE D'AUBERT",
+                "name": "matiere_20_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_21_image",
+                "label": "Image – MARBRE DE CAMPAN",
+                "name": "matiere_21_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_21_description",
+                "label": "Description – MARBRE DE CAMPAN",
+                "name": "matiere_21_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_21_categorie",
+                "label": "Catégorie – MARBRE DE CAMPAN",
+                "name": "matiere_21_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_22_image",
+                "label": "Image – MARBRE DE CHASSAGNE",
+                "name": "matiere_22_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_22_description",
+                "label": "Description – MARBRE DE CHASSAGNE",
+                "name": "matiere_22_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_22_categorie",
+                "label": "Catégorie – MARBRE DE CHASSAGNE",
+                "name": "matiere_22_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_23_image",
+                "label": "Image – BLEU TURQUIN",
+                "name": "matiere_23_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_23_description",
+                "label": "Description – BLEU TURQUIN",
+                "name": "matiere_23_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_23_categorie",
+                "label": "Catégorie – BLEU TURQUIN",
+                "name": "matiere_23_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_24_image",
+                "label": "Image – GRIOTTE DE CAUNES",
+                "name": "matiere_24_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_24_description",
+                "label": "Description – GRIOTTE DE CAUNES",
+                "name": "matiere_24_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_24_categorie",
+                "label": "Catégorie – GRIOTTE DE CAUNES",
+                "name": "matiere_24_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_25_image",
+                "label": "Image – SAINT-PONS",
+                "name": "matiere_25_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_25_description",
+                "label": "Description – SAINT-PONS",
+                "name": "matiere_25_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_25_categorie",
+                "label": "Catégorie – SAINT-PONS",
+                "name": "matiere_25_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_26_image",
+                "label": "Image – SARRANCOLIN",
+                "name": "matiere_26_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_26_description",
+                "label": "Description – SARRANCOLIN",
+                "name": "matiere_26_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_26_categorie",
+                "label": "Catégorie – SARRANCOLIN",
+                "name": "matiere_26_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_27_image",
+                "label": "Image – CAUNES MINERVOIS",
+                "name": "matiere_27_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_27_description",
+                "label": "Description – CAUNES MINERVOIS",
+                "name": "matiere_27_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_27_categorie",
+                "label": "Catégorie – CAUNES MINERVOIS",
+                "name": "matiere_27_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_28_image",
+                "label": "Image – MARBRE DU JURA",
+                "name": "matiere_28_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_28_description",
+                "label": "Description – MARBRE DU JURA",
+                "name": "matiere_28_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_28_categorie",
+                "label": "Catégorie – MARBRE DU JURA",
+                "name": "matiere_28_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            },
+            {
+                "key": "field_matiere_29_image",
+                "label": "Image – COMBLANCHIEN",
+                "name": "matiere_29_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_matiere_29_description",
+                "label": "Description – COMBLANCHIEN",
+                "name": "matiere_29_description",
+                "type": "textarea",
+                "rows": 5
+            },
+            {
+                "key": "field_matiere_29_categorie",
+                "label": "Catégorie – COMBLANCHIEN",
+                "name": "matiere_29_categorie",
+                "type": "select",
+                "choices": {
+                    "marbre": "Marbre",
+                    "granit": "Granit",
+                    "quartzite": "Quartzite",
+                    "autres": "Autres"
+                },
+                "default_value": "marbre"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/template-matieres.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]

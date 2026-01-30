@@ -1,0 +1,397 @@
+/* ==========================================================================
+   PAGE SAVOIR FAIRE - STYLES
+   ========================================================================== */
+
+/* ==========================================================================
+   DECORATIVE VECTORS
+   ========================================================================== */
+
+.savoir-faire-wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+.savoir-faire-wrapper > .container {
+    position: relative;
+    z-index: 10;
+}
+
+.decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    width: clamp(150px, 22vw, 280px);
+    opacity: 0.9;
+}
+
+/* Position gauche - collé au bord */
+.decor--left {
+    left: 0;
+    transform: translateX(-30%);
+}
+
+/* Position droite - collé au bord */
+.decor--right {
+    right: 0;
+    left: auto;
+    transform: translateX(30%);
+}
+
+/* Positions verticales - 3 vectors */
+.decor--pos-1 {
+    top: 5%;
+}
+
+.decor--pos-2 {
+    top: 35%;
+}
+
+.decor--pos-3 {
+    top: 65%;
+}
+
+/* Masquer les décorations sur mobile */
+@media (max-width: 768px) {
+    .decor {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   PAGE HEADER - SAVOIR FAIRE
+   ========================================================================== */
+
+.page-savoir-faire {
+    background-color: var(--color-cream);
+    position: relative;
+}
+
+.page-header--savoir-faire {
+    padding: clamp(120px, 20vh, 200px) 0 clamp(80px, 12vh, 120px);
+    text-align: center;
+    background-image: url('../../images/headers/header-savoir-faire.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: visible;
+}
+
+/* Dark gradient overlay at the top for better nav visibility */
+.page-header--savoir-faire::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-header--savoir-faire .page-title {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 400;
+    color: #ffffff;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   FILTER BAR / NAVIGATION TRANSITION
+   ========================================================================== */
+
+.section-filter {
+    position: relative;
+}
+
+.filter-bar {
+    padding: var(--spacing-xl) 0 var(--spacing-2xl);
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-cream);
+}
+
+.filter-bar__list {
+    display: flex;
+    gap: clamp(2rem, 8vw, 5rem);
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-btn {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    color: var(--color-gray);
+    background: none;
+    border: none;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-brown-dark);
+    transition: width var(--transition-base);
+}
+
+.filter-btn:hover,
+.filter-btn:focus {
+    color: var(--color-brown-dark);
+}
+
+.filter-btn.active {
+    color: var(--color-brown-dark);
+    font-weight: 500;
+}
+
+.filter-btn.active::after {
+    width: 100%;
+}
+
+/* Contenu Principal */
+.savoir-faire-content {
+    padding: calc(var(--spacing-3xl) + 60px) 0 var(--spacing-3xl);
+}
+
+.savoir-faire-section {
+    margin-bottom: var(--spacing-4xl);
+    position: relative;
+}
+
+.savoir-faire-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Section Wrapper avec layout alternant (zigzag) */
+.section-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2xl);
+    align-items: center;
+    padding: var(--spacing-2xl) 0;
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.section-wrapper > * {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 
+ * L'ordre est défini directement dans le HTML :
+ * - Section 1 & 3 : .section-text puis .section-image (texte à gauche)
+ * - Section 2 : .section-image puis .section-text (image à gauche)
+ * Pas besoin de CSS order ou flex-direction reverse
+ */
+
+.section-text {
+    padding: var(--spacing-lg);
+    position: relative;
+    z-index: 10;
+}
+
+.section-image {
+    overflow: hidden;
+    border-radius: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.section-image img {
+    width: 621px;
+    height: 400px;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    box-shadow: none !important;
+    filter: none !important;
+    border-radius: 0 !important;
+}
+
+.section-title {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    color: var(--color-brown-dark);
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+    position: relative;
+    padding-bottom: 0;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+
+.section-content {
+    font-size: var(--fs-base);
+    line-height: 1.8;
+    color: var(--color-gray);
+}
+
+.section-content p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .savoir-faire-hero {
+        height: 300px;
+    }
+
+    .page-hero__title {
+        font-size: var(--fs-2xl);
+    }
+    
+    /* Garder le dégradé sombre visible sur mobile */
+    .page-header--savoir-faire::before {
+        height: 150px;
+    }
+    
+    /* Barre de filtres réduite sur mobile */
+    .filter-bar {
+        padding: clamp(10px, 1.5vh, 12px) 0;
+    }
+    
+    .filter-bar__list {
+        gap: 0.75rem 1rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
+
+    .section-title {
+        font-size: var(--fs-xl);
+    }
+
+    .section-wrapper {
+        flex-direction: column !important;
+        gap: var(--spacing-xl);
+    }
+
+    .section-wrapper.reversed {
+        flex-direction: column !important;
+    }
+
+    .savoir-faire-content {
+        padding: var(--spacing-2xl) 0;
+    }
+
+    .savoir-faire-section {
+        margin-bottom: var(--spacing-2xl);
+    }
+
+    .section-text {
+        padding: var(--spacing-md);
+    }
+    
+    /* Images responsive - même style que page Réalisation */
+    .section-image {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px;
+    }
+    
+    .section-image img {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px;
+        object-fit: cover;
+    }
+}
+
+/* Petits écrans (≤ 430px) : Ordre Titre → Texte → Image */
+@media (max-width: 430px) {
+    .section-wrapper,
+    .section-wrapper.section-wrapper--image-left {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* Forcer l'ordre : texte (titre + contenu) en premier, image en dernier */
+    .section-text {
+        order: 1 !important;
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .section-image {
+        order: 2 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px;
+    }
+    
+    .section-image img {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px;
+    }
+    
+    /* Titre et contenu dans le bon ordre */
+    .section-title {
+        font-size: var(--fs-lg);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .section-content {
+        font-size: var(--fs-sm);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* Annuler les styles de la section inversée sur mobile */
+    .section-wrapper--image-left .section-text,
+    .section-wrapper--image-left .section-image {
+        direction: ltr !important;
+    }
+}
+
+/* ==========================================================================
+   HEADER STYLES FOR SAVOIR FAIRE PAGE
+   ========================================================================== */
+
+/* Override header link colors to white on Savoir Faire page */
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact {
+    color: #ffffff !important;
+}
+
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link:hover,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link:focus,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact:hover,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact:focus {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link::after {
+    background-color: #ffffff;
+}

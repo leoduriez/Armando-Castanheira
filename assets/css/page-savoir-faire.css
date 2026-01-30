@@ -1,0 +1,18 @@
+/* Page Savoir Faire - Styles additionnels */
+
+/* Links blancs dans le header pour la page Savoir Faire */
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact {
+    color: #ffffff !important;
+}
+
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link:hover,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link:focus,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact:hover,
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link--contact:focus {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.page-template-page-templates-template-savoir-faire .site-header .nav-menu__link::after {
+    background-color: #ffffff;
+}

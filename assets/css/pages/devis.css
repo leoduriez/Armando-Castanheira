@@ -1,0 +1,317 @@
+/**
+ * Styles pour la page de demande de devis
+ *
+ * @package suspended_starter
+ */
+
+/* ========================================
+   PAGE HERO - DEVIS
+   ======================================== */
+
+.page-hero--devis {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a2a2a 100%);
+    padding: 80px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.page-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.page-hero__subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   LAYOUT DEVIS
+   ======================================== */
+
+.section--devis {
+    padding: 60px 0;
+}
+
+.devis-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    align-items: start;
+}
+
+.devis-layout__form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.devis-intro {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.devis-intro p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ========================================
+   SIDEBAR CARDS
+   ======================================== */
+
+.devis-layout__sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.devis-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.devis-card__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.devis-card__title .icon {
+    font-size: 1.3rem;
+}
+
+.devis-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.devis-card__list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #555;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.devis-card__list li:last-child {
+    border-bottom: none;
+}
+
+.devis-card__list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+/* Contact card */
+.devis-card--contact {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a2a2a 100%);
+    color: #fff;
+}
+
+.devis-card--contact .devis-card__title {
+    color: #fff;
+    border-bottom-color: var(--color-secondary);
+}
+
+.devis-card--contact p {
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.devis-card__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.contact-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.contact-link .dashicons {
+    color: var(--color-secondary);
+}
+
+/* Horaires */
+.devis-card__hours {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.devis-card__hours li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    color: #555;
+}
+
+.devis-card__hours li:last-child {
+    border-bottom: none;
+}
+
+.devis-card__hours li span:last-child {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* ========================================
+   SECTION RÉASSURANCE
+   ======================================== */
+
+.section--reassurance {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background: #f8f9fa;
+}
+
+.reassurance-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.reassurance-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reassurance-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.reassurance-item__icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.reassurance-item__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.reassurance-item p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================================
+   NOTICE
+   ======================================== */
+
+.notice--warning {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .devis-layout {
+        grid-template-columns: 1fr 300px;
+        gap: 30px;
+    }
+
+    .reassurance-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero--devis {
+        padding: 60px 0;
+    }
+
+    .section--devis {
+        padding: 40px 0;
+    }
+
+    .devis-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .devis-layout__form {
+        padding: 25px;
+    }
+
+    .devis-layout__sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .devis-card--contact {
+        grid-column: span 2;
+    }
+
+    .reassurance-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .devis-layout__sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .devis-card--contact {
+        grid-column: span 1;
+    }
+
+    .devis-layout__form {
+        padding: 20px;
+    }
+}

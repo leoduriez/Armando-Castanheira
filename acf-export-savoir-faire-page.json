@@ -1,0 +1,117 @@
+{
+    "key": "group_savoir_faire_page",
+    "title": "Savoir-Faire - Page unique",
+    "fields": [
+        {
+            "key": "field_sf_section_1_titre",
+            "label": "Titre Section 1",
+            "name": "section_1_titre",
+            "type": "text",
+            "default_value": "Installation sur mesure"
+        },
+        {
+            "key": "field_sf_section_1_contenu",
+            "label": "Contenu Section 1",
+            "name": "section_1_contenu",
+            "type": "wysiwyg",
+            "default_value": ""
+        },
+        {
+            "key": "field_sf_section_1_image",
+            "label": "Image Section 1",
+            "name": "section_1_image",
+            "type": "image",
+            "return_format": "array"
+        },
+        {
+            "key": "field_sf_section_1_ordre",
+            "label": "Ordre Section 1",
+            "name": "section_1_ordre",
+            "type": "select",
+            "choices": {
+                "normal": "Texte à gauche, Image à droite",
+                "reversed": "Image à gauche, Texte à droite"
+            },
+            "default_value": "normal"
+        },
+        {
+            "key": "field_sf_section_2_titre",
+            "label": "Titre Section 2",
+            "name": "section_2_titre",
+            "type": "text",
+            "default_value": "Redonner l'éclat"
+        },
+        {
+            "key": "field_sf_section_2_contenu",
+            "label": "Contenu Section 2",
+            "name": "section_2_contenu",
+            "type": "wysiwyg",
+            "default_value": ""
+        },
+        {
+            "key": "field_sf_section_2_image",
+            "label": "Image Section 2",
+            "name": "section_2_image",
+            "type": "image",
+            "return_format": "array"
+        },
+        {
+            "key": "field_sf_section_2_ordre",
+            "label": "Ordre Section 2",
+            "name": "section_2_ordre",
+            "type": "select",
+            "choices": {
+                "normal": "Texte à gauche, Image à droite",
+                "reversed": "Image à gauche, Texte à droite"
+            },
+            "default_value": "reversed"
+        },
+        {
+            "key": "field_sf_section_3_titre",
+            "label": "Titre Section 3",
+            "name": "section_3_titre",
+            "type": "text",
+            "default_value": "Rénovation"
+        },
+        {
+            "key": "field_sf_section_3_contenu",
+            "label": "Contenu Section 3",
+            "name": "section_3_contenu",
+            "type": "wysiwyg",
+            "default_value": ""
+        },
+        {
+            "key": "field_sf_section_3_image",
+            "label": "Image Section 3",
+            "name": "section_3_image",
+            "type": "image",
+            "return_format": "array"
+        },
+        {
+            "key": "field_sf_section_3_ordre",
+            "label": "Ordre Section 3",
+            "name": "section_3_ordre",
+            "type": "select",
+            "choices": {
+                "normal": "Texte à gauche, Image à droite",
+                "reversed": "Image à gauche, Texte à droite"
+            },
+            "default_value": "normal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/template-savoir-faire.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

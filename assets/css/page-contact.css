@@ -1,0 +1,25 @@
+/* Page Contact & Devis - Styles additionnels */
+
+/* Links blancs dans le header pour les pages Contact et Devis */
+.page-template-page-templates-template-contact .site-header .nav-menu__link,
+.page-template-page-templates-template-contact .site-header .nav-menu__link--contact,
+.page-template-page-templates-template-devis .site-header .nav-menu__link,
+.page-template-page-templates-template-devis .site-header .nav-menu__link--contact {
+    color: #ffffff !important;
+}
+
+.page-template-page-templates-template-contact .site-header .nav-menu__link:hover,
+.page-template-page-templates-template-contact .site-header .nav-menu__link:focus,
+.page-template-page-templates-template-contact .site-header .nav-menu__link--contact:hover,
+.page-template-page-templates-template-contact .site-header .nav-menu__link--contact:focus,
+.page-template-page-templates-template-devis .site-header .nav-menu__link:hover,
+.page-template-page-templates-template-devis .site-header .nav-menu__link:focus,
+.page-template-page-templates-template-devis .site-header .nav-menu__link--contact:hover,
+.page-template-page-templates-template-devis .site-header .nav-menu__link--contact:focus {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.page-template-page-templates-template-contact .site-header .nav-menu__link::after,
+.page-template-page-templates-template-devis .site-header .nav-menu__link::after {
+    background-color: #ffffff;
+}

@@ -470,3 +470,155 @@ function ac_shortcode_matieres_static( $atts ) {
     return ob_get_clean();
 }
 add_shortcode( 'matieres_static', 'ac_shortcode_matieres_static' );
+
+/* ==========================================================================
+   SECTION AVIS CLIENTS
+   ========================================================================== */
+
+/**
+ * Ajouter la section Avis Clients avant le footer
+ */
+add_action('get_footer', 'avis_clients_render_section');
+
+function avis_clients_render_section() {
+    if (!is_front_page()) return;
+    
+    ?>
+    <!-- DÉBUT SECTION AVIS CLIENTS -->
+    <section id="avis-clients-section" class="avis-clients-wrapper">
+        <img src="<?php echo esc_url( AC_THEME_URI . '/assets/images/common/vector2.webp' ); ?>" alt="" class="decor decor--left" aria-hidden="true">
+        <div class="avis-container">
+            <!-- Titre de la section -->
+            <h2 class="section__title section__title--center avis-title">Ce que disent nos clients</h2>
+            
+            <!-- Carousel des avis -->
+            <div class="avis-carousel-wrapper">
+                <button class="carousel-btn carousel-prev" aria-label="Avis précédent">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="avis-carousel">
+                    <div class="carousel-track">
+                        <!-- Les avis seront ajoutés dynamiquement ici -->
+                        <div class="avis-card">
+                            <div class="avis-header">
+                                <div class="avis-avatar">M</div>
+                                <div class="avis-info">
+                                    <h3 class="avis-prenom">Marie</h3>
+                                    <div class="avis-stars">
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="avis-commentaire">Excellent service ! Je recommande vivement. L'équipe est très professionnelle et à l'écoute.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-next" aria-label="Avis suivant">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Indicateurs du carousel -->
+            <div class="carousel-indicators"></div>
+            
+            <!-- Formulaire d'ajout d'avis -->
+            <div class="avis-form-wrapper">
+                <h3 class="form-title">Partagez votre expérience</h3>
+                <form id="avis-form" class="avis-form">
+                    <div class="form-group">
+                        <label for="prenom">Prénom <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="prenom" 
+                            name="prenom" 
+                            placeholder="Votre prénom" 
+                            required 
+                            maxlength="50"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentaire">Votre avis <span class="required">*</span></label>
+                        <textarea 
+                            id="commentaire" 
+                            name="commentaire" 
+                            placeholder="Partagez votre expérience avec nous..." 
+                            required 
+                            rows="4"
+                            maxlength="500"
+                        ></textarea>
+                        <span class="char-count">0/500</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Votre note <span class="required">*</span></label>
+                        <div class="rating-input">
+                            <span class="rating-star" data-rating="1">★</span>
+                            <span class="rating-star" data-rating="2">★</span>
+                            <span class="rating-star" data-rating="3">★</span>
+                            <span class="rating-star" data-rating="4">★</span>
+                            <span class="rating-star" data-rating="5">★</span>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="0" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Envoyer mon avis</span>
+                        <span class="btn-loader" style="display: none;">
+                            <svg class="spinner" viewBox="0 0 50 50">
+                                <circle cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                            </svg>
+                        </span>
+                    </button>
+                    
+                    <p class="form-message"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- FIN SECTION AVIS CLIENTS -->
+    <?php
+}
+
+/**
+ * Enqueue les styles CSS pour la section Avis Clients
+ */
+add_action('wp_enqueue_scripts', 'avis_clients_enqueue_styles');
+
+function avis_clients_enqueue_styles() {
+    if (is_front_page()) {
+        wp_enqueue_style(
+            'avis-clients',
+            AC_THEME_URI . '/assets/css/components/avis-clients.css',
+            array(),
+            AC_THEME_VERSION
+        );
+    }
+}
+
+/**
+ * Enqueue le JavaScript pour la section Avis Clients
+ */
+add_action('wp_enqueue_scripts', 'avis_clients_enqueue_scripts');
+
+function avis_clients_enqueue_scripts() {
+    if (is_front_page()) {
+        wp_enqueue_script(
+            'avis-clients',
+            AC_THEME_URI . '/assets/js/components/avis-clients.js',
+            array(),
+            AC_THEME_VERSION,
+            true
+        );
+    }
+}

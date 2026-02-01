@@ -60,7 +60,7 @@ function ac_enqueue_styles() {
         );
         wp_enqueue_style(
             'ac-matieres-header-style',
-            AC_THEME_URI . '/assets/css/page-matieres.css',
+            AC_THEME_URI . '/assets/css/pages/page-matieres.css',
             array( 'ac-main-style' ),
             AC_THEME_VERSION
         );
@@ -75,7 +75,7 @@ function ac_enqueue_styles() {
         );
         wp_enqueue_style(
             'ac-contact-header-style',
-            AC_THEME_URI . '/assets/css/page-contact.css',
+            AC_THEME_URI . '/assets/css/pages/page-contact.css',
             array( 'ac-main-style' ),
             AC_THEME_VERSION
         );

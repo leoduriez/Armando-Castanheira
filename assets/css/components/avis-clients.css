@@ -1,0 +1,529 @@
+/**
+ * ========================================
+ * SECTION AVIS CLIENTS
+ * ========================================
+ * Styles pour la section d'avis clients avec carousel et formulaire
+ * @version 1.0.0
+ */
+
+/* Variables CSS adaptées au thème */
+.avis-clients-wrapper {
+    --avis-primary-color: #201815;
+    --avis-primary-hover: #000000;
+    --avis-secondary-color: #A69586;
+    --avis-text-dark: #201815;
+    --avis-text-light: #5E5E60;
+    --avis-border-color: #A69586;
+    --avis-bg-light: #F2F2F0;
+    --avis-white: #FFFFFF;
+    --avis-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --avis-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --avis-transition: 300ms ease;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+   ======================================== */
+
+.avis-clients-wrapper {
+    width: 100%;
+    padding: clamp(var(--spacing-2xl), 8vw, var(--spacing-3xl)) 0;
+    background: var(--avis-bg-light);
+    position: relative;
+    border-top: 1px solid var(--avis-border-color);
+    overflow: hidden;
+}
+
+/* Vecteur décoratif */
+.avis-clients-wrapper .decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    width: clamp(150px, 22vw, 280px);
+    opacity: 0.15;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(-30%);
+}
+
+.avis-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ========================================
+   TITRE PRINCIPAL
+   ======================================== */
+
+.avis-title {
+    font-family: var(--font-title);
+    font-size: var(--fs-2xl);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-brown-dark);
+}
+
+/* ========================================
+   CAROUSEL DES AVIS
+   ======================================== */
+
+.avis-carousel-wrapper {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+    padding: 0 50px;
+}
+
+.avis-carousel {
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Carte d'avis */
+.avis-card {
+    min-width: 100%;
+    padding: var(--spacing-lg);
+    background: var(--avis-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--avis-border-color);
+    transition: var(--transition-base);
+}
+
+.avis-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.avis-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.avis-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--avis-secondary-color);
+    color: var(--avis-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    flex-shrink: 0;
+    font-family: var(--font-title);
+}
+
+.avis-info {
+    flex: 1;
+}
+
+.avis-prenom {
+    font-family: var(--font-title);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
+    color: var(--avis-text-dark);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.avis-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.star {
+    color: #d1d5db;
+    font-size: var(--fs-lg);
+    transition: var(--transition-base);
+}
+
+.star.filled {
+    color: var(--avis-secondary-color);
+}
+
+.avis-commentaire {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--avis-text-light);
+    margin: 0;
+}
+
+/* ========================================
+   BOUTONS DE NAVIGATION
+   ======================================== */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--avis-white);
+    border: 1px solid var(--avis-border-color);
+    color: var(--avis-text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+}
+
+.carousel-btn:hover {
+    background: var(--avis-primary-color);
+    color: var(--avis-white);
+    border-color: var(--avis-primary-color);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-btn:disabled:hover {
+    background: var(--avis-white);
+    color: var(--avis-text-dark);
+    border-color: var(--avis-border-color);
+    transform: translateY(-50%) scale(1);
+}
+
+/* ========================================
+   INDICATEURS DU CAROUSEL
+   ======================================== */
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--spacing-lg);
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--avis-border-color);
+    cursor: pointer;
+    transition: var(--transition-base);
+    border: none;
+    padding: 0;
+}
+
+.carousel-indicator:hover {
+    background: var(--avis-text-light);
+}
+
+.carousel-indicator.active {
+    background: var(--avis-primary-color);
+    width: 32px;
+    border-radius: 6px;
+}
+
+/* ========================================
+   FORMULAIRE D'AVIS
+   ======================================== */
+
+.avis-form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background: var(--avis-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--avis-border-color);
+}
+
+.form-title {
+    font-family: var(--font-title);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--avis-text-dark);
+    margin: 0 0 var(--spacing-md) 0;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.avis-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    position: relative;
+}
+
+.form-group label {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--avis-text-dark);
+}
+
+.required {
+    color: #ef4444;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 14px;
+    border: 1px solid var(--avis-border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--fs-base);
+    font-family: var(--font-body);
+    color: var(--avis-text-dark);
+    transition: var(--transition-base);
+    background: var(--avis-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--avis-primary-color);
+    box-shadow: 0 0 0 2px rgba(32, 24, 21, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.char-count {
+    font-size: var(--fs-xs);
+    color: var(--avis-text-light);
+    text-align: right;
+}
+
+/* ========================================
+   SYSTÈME DE NOTATION
+   ======================================== */
+
+.rating-input {
+    display: flex;
+    gap: 6px;
+    font-size: 1.75rem;
+}
+
+.rating-star {
+    color: #d1d5db;
+    cursor: pointer;
+    transition: var(--transition-base);
+    user-select: none;
+}
+
+.rating-star:hover,
+.rating-star.active {
+    color: var(--avis-secondary-color);
+    transform: scale(1.1);
+}
+
+.rating-star.active {
+    animation: starPulse 0.3s ease;
+}
+
+@keyframes starPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* ========================================
+   BOUTON D'ENVOI
+   ======================================== */
+
+.submit-btn {
+    padding: 14px 28px;
+    background: var(--avis-primary-color);
+    color: var(--avis-white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-medium);
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.submit-btn:hover {
+    background: var(--avis-primary-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-text,
+.btn-loader {
+    position: relative;
+    z-index: 1;
+}
+
+/* Spinner de chargement */
+.spinner {
+    animation: rotate 1s linear infinite;
+    width: 24px;
+    height: 24px;
+}
+
+.spinner circle {
+    stroke: var(--avis-white);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+/* ========================================
+   MESSAGES DE FORMULAIRE
+   ======================================== */
+
+.form-message {
+    padding: 12px 16px;
+    border-radius: var(--border-radius-md);
+    font-size: var(--fs-sm);
+    text-align: center;
+    margin: 0;
+    display: none;
+}
+
+.form-message.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.form-message.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .avis-clients-wrapper {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .avis-clients-wrapper .decor {
+        display: none;
+    }
+    
+    .avis-carousel-wrapper {
+        padding: 0 50px;
+    }
+    
+    .avis-card {
+        padding: var(--spacing-md);
+    }
+    
+    .avis-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: var(--fs-md);
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .carousel-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .avis-form-wrapper {
+        padding: var(--spacing-md);
+    }
+    
+    .rating-input {
+        font-size: 1.5rem;
+        justify-content: center;
+    }
+    
+    .submit-btn {
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avis-clients-wrapper {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .avis-carousel-wrapper {
+        padding: 0 40px;
+    }
+    
+    .avis-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .avis-form-wrapper {
+        padding: var(--spacing-sm);
+    }
+    
+    .rating-input {
+        font-size: 1.25rem;
+    }
+}

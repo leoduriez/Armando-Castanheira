@@ -1,5 +1,17 @@
 /**
- * Main JavaScript - Vanilla JS Only
+ * JavaScript principal - Vanilla JS uniquement
+ * 
+ * Ce fichier contient toutes les fonctionnalités JavaScript principales du thème :
+ * - Bouton retour en haut
+ * - Menu mobile
+ * - Scroll smooth pour les ancres
+ * - Lazy loading des images
+ * - Animations au scroll
+ * - Navigation active
+ * - Accordéons du footer
+ * - Popup vidéo
+ * 
+ * Aucune dépendance - 100% Vanilla JavaScript
  * 
  * @package Armando_Castanheira
  */
@@ -7,7 +19,8 @@
 'use strict';
 
 /**
- * DOM Ready function
+ * Fonction DOM Ready
+ * Exécute le callback quand le DOM est prêt
  */
 function domReady(callback) {
     if (document.readyState === 'loading') {
@@ -18,11 +31,13 @@ function domReady(callback) {
 }
 
 /**
- * Scroll to Top Button
- * Shows a button when user scrolls down, clicking it scrolls back to top
+ * Bouton de retour en haut de page
+ * 
+ * Affiche un bouton quand l'utilisateur scrolle vers le bas.
+ * Cliquer dessus ramène en haut de la page avec un scroll smooth.
  */
 function initScrollToTop() {
-    // Create the button element
+    // Créer l'élément bouton dynamiquement
     const scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-to-top';
     scrollBtn.setAttribute('aria-label', 'Retour en haut de page');
@@ -34,7 +49,7 @@ function initScrollToTop() {
     document.body.appendChild(scrollBtn);
     
     let ticking = false;
-    const scrollThreshold = 300; // Show button after 300px scroll
+    const scrollThreshold = 300; // Afficher le bouton après 300px de scroll
     
     function updateButton() {
         const scrollY = window.scrollY;
@@ -48,7 +63,7 @@ function initScrollToTop() {
         ticking = false;
     }
     
-    // Scroll event listener
+    // Écouteur d'événement scroll (optimisé avec requestAnimationFrame)
     window.addEventListener('scroll', function() {
         if (!ticking) {
             window.requestAnimationFrame(updateButton);
@@ -56,7 +71,7 @@ function initScrollToTop() {
         }
     }, { passive: true });
     
-    // Click event - smooth scroll to top
+    // Événement click - scroll smooth vers le haut
     scrollBtn.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
@@ -64,12 +79,17 @@ function initScrollToTop() {
         });
     });
     
-    // Initial check
+    // Vérification initiale
     updateButton();
 }
 
 /**
- * Mobile menu toggle with overlay
+ * Toggle du menu mobile avec overlay
+ * 
+ * Gère l'ouverture/fermeture du menu mobile avec :
+ * - Overlay sombre en arrière-plan
+ * - Blocage du scroll du body
+ * - Fermeture avec Escape ou clic sur l'overlay
  */
 function initMobileMenu() {
     const burgerCheckbox = document.getElementById('burger-toggle');
@@ -77,7 +97,7 @@ function initMobileMenu() {
     
     if (!burgerCheckbox || !mainNav) return;
     
-    // Create overlay element
+    // Créer l'élément overlay s'il n'existe pas
     let overlay = document.querySelector('.menu-overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -85,7 +105,7 @@ function initMobileMenu() {
         document.body.appendChild(overlay);
     }
     
-    // Toggle menu function
+    // Fonction pour ouvrir/fermer le menu
     function toggleMenu(open) {
         const isOpen = typeof open === 'boolean' ? open : !mainNav.classList.contains('is-open');
         
@@ -93,7 +113,7 @@ function initMobileMenu() {
         burgerCheckbox.checked = isOpen;
         document.body.classList.toggle('menu-open', isOpen);
         
-        // Handle overlay
+        // Gérer l'affichage de l'overlay
         if (isOpen) {
             overlay.classList.add('is-visible');
             document.body.style.overflow = 'hidden';
@@ -103,24 +123,24 @@ function initMobileMenu() {
         }
     }
     
-    // Checkbox change event
+    // Événement de changement de la checkbox
     burgerCheckbox.addEventListener('change', function() {
         toggleMenu(this.checked);
     });
     
-    // Click on overlay to close
+    // Clic sur l'overlay pour fermer le menu
     overlay.addEventListener('click', function() {
         toggleMenu(false);
     });
     
-    // Close menu on escape key
+    // Fermer le menu avec la touche Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mainNav.classList.contains('is-open')) {
             toggleMenu(false);
         }
     });
     
-    // Close menu when clicking a nav link
+    // Fermer le menu lors du clic sur un lien de navigation
     mainNav.querySelectorAll('.nav-menu__link').forEach(link => {
         link.addEventListener('click', function() {
             toggleMenu(false);
@@ -129,7 +149,10 @@ function initMobileMenu() {
 }
 
 /**
- * Smooth scroll for anchor links
+ * Scroll smooth pour les liens ancres
+ * 
+ * Ajoute un comportement de scroll fluide pour tous les liens
+ * qui pointent vers une ancre (#section)
  */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -151,7 +174,7 @@ function initSmoothScroll() {
                     behavior: 'smooth'
                 });
                 
-                // Update focus for accessibility
+                // Mettre à jour le focus pour l'accessibilité
                 target.setAttribute('tabindex', '-1');
                 target.focus({ preventScroll: true });
             }
@@ -160,7 +183,10 @@ function initSmoothScroll() {
 }
 
 /**
- * Lazy loading images with Intersection Observer
+ * Chargement différé des images avec Intersection Observer
+ * 
+ * Charge les images uniquement quand elles deviennent visibles.
+ * Améliore les performances en réduisant le temps de chargement initial.
  */
 function initLazyLoad() {
     const lazyImages = document.querySelectorAll('img[data-src]');
@@ -187,7 +213,7 @@ function initLazyLoad() {
         
         lazyImages.forEach(img => imageObserver.observe(img));
     } else {
-        // Fallback for older browsers
+        // Solution de secours pour les navigateurs anciens
         lazyImages.forEach(img => {
             img.src = img.dataset.src;
             if (img.dataset.srcset) {
@@ -198,7 +224,10 @@ function initLazyLoad() {
 }
 
 /**
- * Animate elements on scroll
+ * Animer les éléments au scroll
+ * 
+ * Ajoute des animations aux éléments avec l'attribut [data-animate]
+ * quand ils deviennent visibles dans le viewport.
  */
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('[data-animate]');
@@ -221,7 +250,10 @@ function initScrollAnimations() {
 }
 
 /**
- * Active navigation link
+ * Lien de navigation actif
+ * 
+ * Ajoute la classe 'active' au lien de navigation correspondant
+ * à la page actuelle.
  */
 function initActiveNavLink() {
     const currentPath = window.location.pathname;
@@ -239,18 +271,21 @@ function initActiveNavLink() {
 }
 
 /**
- * Logo click - smooth scroll to top
+ * Clic sur le logo - scroll vers le haut
+ * 
+ * Sur la page d'accueil, cliquer sur le logo scrolle vers le haut
+ * au lieu de recharger la page.
  */
 function initLogoScrollToTop() {
     const logos = document.querySelectorAll('.site-logo, .footer-logo');
     
     logos.forEach(logo => {
         logo.addEventListener('click', function(e) {
-            // Only if we're on the homepage
+            // Uniquement si on est sur la page d'accueil
             const logoHref = this.getAttribute('href') || this.querySelector('a')?.getAttribute('href');
             const currentPath = window.location.pathname;
             
-            // If clicking logo on homepage, scroll to top instead of navigating
+            // Si clic sur le logo sur la page d'accueil, scroller vers le haut au lieu de naviguer
             if (currentPath === '/' || currentPath === '/index.php' || currentPath === '') {
                 e.preventDefault();
                 window.scrollTo({
@@ -263,7 +298,10 @@ function initLogoScrollToTop() {
 }
 
 /**
- * Footer Accordions
+ * Accordéons du footer
+ * 
+ * Gère l'ouverture/fermeture des accordéons pour les mentions légales
+ * et la politique de confidentialité.
  */
 function initFooterAccordions() {
     const triggers = document.querySelectorAll('.footer-accordion-trigger');
@@ -278,17 +316,17 @@ function initFooterAccordions() {
             
             if (!targetAccordion) return;
             
-            // Close all other accordions
+            // Fermer tous les autres accordéons
             accordions.forEach(acc => {
                 if (acc.id !== targetId) {
                     acc.classList.remove('active');
                 }
             });
             
-            // Toggle current accordion
+            // Basculer l'accordéon actuel
             targetAccordion.classList.toggle('active');
             
-            // Scroll to accordion when opened
+            // Scroller vers l'accordéon quand il s'ouvre
             if (targetAccordion.classList.contains('active')) {
                 setTimeout(() => {
                     targetAccordion.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -297,7 +335,7 @@ function initFooterAccordions() {
         });
     });
     
-    // Close buttons
+    // Boutons de fermeture
     const closeButtons = document.querySelectorAll('.footer-accordion__close');
     closeButtons.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -317,8 +355,10 @@ function initFooterAccordions() {
 }
 
 /**
- * Matières Accordion
- * Toggle description when clicking on matiere card
+ * Accordéon des matières
+ * 
+ * Affiche/masque la description lors du clic sur une carte de matière.
+ * Une seule carte peut être ouverte à la fois.
  */
 function initMatieresAccordion() {
     const matiereCards = document.querySelectorAll('.matiere-card');
@@ -331,7 +371,7 @@ function initMatieresAccordion() {
         if (!header) return;
         
         header.addEventListener('click', function() {
-            // Close all other cards
+            // Fermer toutes les autres cartes
             matiereCards.forEach(otherCard => {
                 if (otherCard !== card && otherCard.classList.contains('is-open')) {
                     otherCard.classList.remove('is-open');
@@ -342,12 +382,12 @@ function initMatieresAccordion() {
                 }
             });
             
-            // Toggle current card
+            // Basculer la carte actuelle
             const isOpen = card.classList.toggle('is-open');
             header.setAttribute('aria-expanded', isOpen);
         });
         
-        // Keyboard accessibility
+        // Accessibilité clavier (Enter et Espace)
         header.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -358,21 +398,23 @@ function initMatieresAccordion() {
 }
 
 /**
- * Hero Video Popup
- * Opens a video in a modal when clicking the play button
+ * Popup vidéo du hero
+ * 
+ * Ouvre une vidéo dans une modal lors du clic sur le bouton play.
+ * Supporte YouTube et Vimeo avec autoplay.
  */
 function initHeroVideoPopup() {
     const playBtn = document.getElementById('hero-play-btn');
     
     if (!playBtn) return;
     
-    // Get video URL from data attribute or customizer
+    // Récupérer l'URL de la vidéo depuis l'attribut data ou le customizer
     const videoUrl = playBtn.dataset.videoUrl || (typeof acAjax !== 'undefined' ? acAjax.heroVideoUrl : '');
     
     if (!videoUrl) return;
     
     playBtn.addEventListener('click', function() {
-        // Create modal
+        // Créer la modal dynamiquement
         const modal = document.createElement('div');
         modal.className = 'video-modal';
         modal.innerHTML = `
@@ -398,10 +440,10 @@ function initHeroVideoPopup() {
         document.body.appendChild(modal);
         document.body.style.overflow = 'hidden';
         
-        // Add show class after a small delay for animation
+        // Ajouter la classe show après un court délai pour l'animation
         setTimeout(() => modal.classList.add('is-visible'), 10);
         
-        // Close modal function
+        // Fonction pour fermer la modal
         function closeModal() {
             modal.classList.remove('is-visible');
             setTimeout(() => {
@@ -410,13 +452,13 @@ function initHeroVideoPopup() {
             }, 300);
         }
         
-        // Close on overlay click
+        // Fermer au clic sur l'overlay
         modal.querySelector('.video-modal__overlay').addEventListener('click', closeModal);
         
-        // Close on button click
+        // Fermer au clic sur le bouton
         modal.querySelector('.video-modal__close').addEventListener('click', closeModal);
         
-        // Close on escape key
+        // Fermer avec la touche Escape
         document.addEventListener('keydown', function escHandler(e) {
             if (e.key === 'Escape') {
                 closeModal();
@@ -425,15 +467,15 @@ function initHeroVideoPopup() {
         });
     });
     
-    // Helper function to convert YouTube/Vimeo URLs to embed URLs
+    // Fonction helper pour convertir les URLs YouTube/Vimeo en URLs embed
     function getEmbedUrl(url) {
-        // YouTube
+        // Gestion des URLs YouTube
         if (url.includes('youtube.com') || url.includes('youtu.be')) {
             const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
             return videoId ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1` : url;
         }
         
-        // Vimeo
+        // Gestion des URLs Vimeo
         if (url.includes('vimeo.com')) {
             const videoId = url.match(/vimeo\.com\/(\d+)/);
             return videoId ? `https://player.vimeo.com/video/${videoId[1]}?autoplay=1` : url;
@@ -444,7 +486,7 @@ function initHeroVideoPopup() {
 }
 
 /**
- * Initialize all functions
+ * Initialiser toutes les fonctions au chargement du DOM
  */
 domReady(function() {
     initScrollToTop();
@@ -460,7 +502,7 @@ domReady(function() {
 });
 
 /**
- * Export for use in other modules
+ * Exporter pour utilisation dans d'autres modules
  */
 window.AC = {
     domReady: domReady

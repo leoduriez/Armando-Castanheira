@@ -380,6 +380,19 @@ img {
     background-color: transparent;
 }
 
+/* Dark gradient overlay at the top for better nav visibility */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 /* ==========================================================================
    SCROLL TO TOP BUTTON
    ========================================================================== */

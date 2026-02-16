@@ -1,6 +1,13 @@
 <?php
 /**
- * The header template
+ * Template du header (en-tête)
+ * 
+ * Contient la structure HTML du header avec :
+ * - Balises meta essentielles
+ * - Logo du site
+ * - Navigation principale
+ * - Menu mobile (burger)
+ * - Bouton de contact
  *
  * @package Armando_Castanheira
  */
@@ -27,12 +34,12 @@
 <header class="site-header" id="site-header">
     <div class="container">
         <div class="header-inner">
-            <!-- Logo -->
+            <!-- Logo du site -->
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" rel="home">
                 <img src="<?php echo esc_url( AC_THEME_URI . '/assets/images/common/logo-ac.webp' ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="site-logo__img">
             </a>
 
-            <!-- Navigation centrale -->
+            <!-- Navigation principale au centre -->
             <nav class="main-navigation" id="main-navigation" aria-label="<?php esc_attr_e( 'Navigation principale', 'armando-castanheira' ); ?>">
                 <ul class="nav-menu">
                     <li class="nav-menu__item">
@@ -58,14 +65,14 @@
                 </ul>
             </nav>
 
-            <!-- Contact (séparé à droite) -->
+            <!-- Bouton de contact (séparé à droite sur desktop) -->
             <div class="header-contact">
                 <a href="<?php echo esc_url( home_url( '/marbrier-paris/' ) ); ?>" class="nav-menu__link nav-menu__link--contact">
                     <?php esc_html_e( 'Contact', 'armando-castanheira' ); ?>
                 </a>
             </div>
 
-            <!-- Menu mobile toggle -->
+            <!-- Bouton toggle pour le menu mobile (hamburger) -->
             <label class="burger" for="burger-toggle" aria-label="<?php esc_attr_e( 'Menu', 'armando-castanheira' ); ?>">
                 <input type="checkbox" id="burger-toggle">
                 <span></span>

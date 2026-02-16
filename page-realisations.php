@@ -243,25 +243,25 @@ if ( $nb_realisations >= 12 ) {
                     <li class="filter-bar__item">
                         <a href="<?php echo esc_url( remove_query_arg( 'type' ) ); ?>" 
                            class="filter-btn <?php echo $current_filter === 'tous' ? 'active' : ''; ?>">
-                            <?php esc_html_e( 'Tous', 'armando-castanheira' ); ?>
+                            <?php esc_html_e( 'Projets', 'armando-castanheira' ); ?>
                         </a>
                     </li>
                     <li class="filter-bar__item">
                         <a href="<?php echo esc_url( add_query_arg( 'type', 'cuisine' ) ); ?>" 
                            class="filter-btn <?php echo $current_filter === 'cuisine' ? 'active' : ''; ?>">
-                            <?php esc_html_e( 'Cuisine', 'armando-castanheira' ); ?>
+                            <?php esc_html_e( 'Cuisines', 'armando-castanheira' ); ?>
                         </a>
                     </li>
                     <li class="filter-bar__item">
                         <a href="<?php echo esc_url( add_query_arg( 'type', 'salle-de-bain' ) ); ?>" 
                            class="filter-btn <?php echo $current_filter === 'salle-de-bain' ? 'active' : ''; ?>">
-                            <?php esc_html_e( 'Salle de bain', 'armando-castanheira' ); ?>
+                            <?php esc_html_e( 'Salles de bains', 'armando-castanheira' ); ?>
                         </a>
                     </li>
                     <li class="filter-bar__item">
                         <a href="<?php echo esc_url( add_query_arg( 'type', 'autre' ) ); ?>" 
                            class="filter-btn <?php echo $current_filter === 'autre' ? 'active' : ''; ?>">
-                            <?php esc_html_e( 'Autre', 'armando-castanheira' ); ?>
+                            <?php esc_html_e( 'Autres', 'armando-castanheira' ); ?>
                         </a>
                     </li>
                 </ul>

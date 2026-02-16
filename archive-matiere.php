@@ -86,7 +86,7 @@ $items_per_page = 12;
                     <li class="filter-bar__item">
                         <a href="<?php echo esc_url( remove_query_arg( 'type' ) ); ?>" 
                            class="filter-btn <?php echo $current_filter === 'tous' ? 'active' : ''; ?>">
-                            <?php esc_html_e( 'Tous', 'armando-castanheira' ); ?>
+                            <?php esc_html_e( 'Toutes', 'armando-castanheira' ); ?>
                         </a>
                     </li>
                     <li class="filter-bar__item">

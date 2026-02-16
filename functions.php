@@ -1,48 +1,65 @@
 <?php
 /**
- * Armando Castanheira - Functions and definitions
+ * Armando Castanheira - Fonctions et définitions du thème
+ * 
+ * Ce fichier contient toutes les fonctions principales du thème WordPress,
+ * incluant la configuration, les optimisations de performance, les shortcodes
+ * et les fonctionnalités personnalisées.
  *
  * @package Armando_Castanheira
  * @version 1.0.0
  */
 
+// Sécurité : empêche l'accès direct au fichier
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit; // Sortie si accès direct
 }
 
 /**
- * Define theme constants
+ * Définition des constantes du thème
+ * Ces constantes sont utilisées partout dans le thème pour référencer
+ * les chemins et la version du thème
  */
 define( 'AC_THEME_VERSION', '1.0.0' );
 define( 'AC_THEME_DIR', get_template_directory() );
 define( 'AC_THEME_URI', get_template_directory_uri() );
 
 /**
- * Theme setup
+ * Configuration initiale du thème
+ * 
+ * Cette fonction configure toutes les fonctionnalités de base du thème WordPress :
+ * - Support des flux RSS
+ * - Gestion automatique du titre de la page
+ * - Support des images à la une
+ * - Tailles d'images personnalisées
+ * - Menus de navigation
+ * - Support HTML5
+ * - Logo personnalisé
+ * - Embeds responsives
  */
 function ac_theme_setup() {
-    // Add default posts and comments RSS feed links to head.
+    // Ajouter les liens RSS par défaut pour les articles et commentaires dans le head
     add_theme_support( 'automatic-feed-links' );
 
-    // Let WordPress manage the document title.
+    // Laisser WordPress gérer automatiquement le titre du document
     add_theme_support( 'title-tag' );
 
-    // Enable support for Post Thumbnails on posts and pages.
+    // Activer le support des images à la une pour les articles et pages
     add_theme_support( 'post-thumbnails' );
 
-    // Custom image sizes
+    // Tailles d'images personnalisées pour les réalisations, matières et hero
     add_image_size( 'realisation-card', 800, 600, true );
     add_image_size( 'realisation-large', 1200, 800, true );
     add_image_size( 'matiere-card', 600, 400, true );
     add_image_size( 'hero-image', 1920, 1080, true );
 
-    // Register navigation menus
+    // Enregistrer les menus de navigation (principal et footer)
     register_nav_menus( array(
         'primary'   => __( 'Menu Principal', 'armando-castanheira' ),
         'footer'    => __( 'Menu Footer', 'armando-castanheira' ),
     ) );
 
-    // Switch default core markup to output valid HTML5.
+    // Activer le balisage HTML5 pour les formulaires et galeries
     add_theme_support( 'html5', array(
         'search-form',
         'comment-form',
@@ -53,7 +70,7 @@ function ac_theme_setup() {
         'script',
     ) );
 
-    // Add support for custom logo
+    // Ajouter le support du logo personnalisé avec dimensions flexibles
     add_theme_support( 'custom-logo', array(
         'height'      => 100,
         'width'       => 200,
@@ -61,16 +78,17 @@ function ac_theme_setup() {
         'flex-width'  => true,
     ) );
 
-    // Add support for responsive embeds
+    // Ajouter le support des embeds responsives (vidéos, iframes)
     add_theme_support( 'responsive-embeds' );
 
-    // Remove support for block widgets
+    // Désactiver l'éditeur de blocs pour les widgets (utilisation classique)
     remove_theme_support( 'widgets-block-editor' );
 }
 add_action( 'after_setup_theme', 'ac_theme_setup' );
 
 /**
- * Set the content width in pixels
+ * Définir la largeur maximale du contenu en pixels
+ * Cette valeur est utilisée par WordPress pour dimensionner les médias embarqués
  */
 function ac_content_width() {
     $GLOBALS['content_width'] = apply_filters( 'ac_content_width', 1200 );
@@ -78,32 +96,42 @@ function ac_content_width() {
 add_action( 'after_setup_theme', 'ac_content_width', 0 );
 
 /**
- * Include required files
+ * Inclusion des fichiers requis
+ * Tous les fichiers de fonctionnalités du thème sont chargés ici
  */
 require AC_THEME_DIR . '/inc/enqueue.php';
 require AC_THEME_DIR . '/inc/custom-post-types.php';
 require AC_THEME_DIR . '/inc/taxonomies.php';
 require AC_THEME_DIR . '/inc/security.php';
 require AC_THEME_DIR . '/inc/template-functions.php';
+require AC_THEME_DIR . '/inc/avis-clients-db.php';
+require AC_THEME_DIR . '/inc/devis-db.php';
 require AC_THEME_DIR . '/inc/ajax-handlers.php';
 require AC_THEME_DIR . '/inc/customizer.php';
+
+// Charger la page d'administration des devis uniquement dans l'admin
+if ( is_admin() ) {
+    require AC_THEME_DIR . '/inc/admin-devis.php';
+}
 // require AC_THEME_DIR . '/inc/homepage-metaboxes.php';
 // require AC_THEME_DIR . '/inc/realisations-metaboxes.php';
 
 /**
- * Disable jQuery migration and move jQuery to footer (if ever needed by plugins)
- * We don't use jQuery in this theme, but some plugins might require it
+ * Désactiver jQuery Migrate et déplacer jQuery dans le footer
+ * Ce thème n'utilise pas jQuery (Vanilla JS uniquement),
+ * mais certains plugins pourraient en avoir besoin
  */
 function ac_optimize_jquery() {
     if ( ! is_admin() ) {
-        // Deregister jQuery migrate
+        // Désenregistrer jQuery Migrate (non nécessaire pour la plupart des sites modernes)
         wp_deregister_script( 'jquery-migrate' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'ac_optimize_jquery', 1 );
 
 /**
- * Remove WordPress emoji scripts
+ * Supprimer les scripts emoji de WordPress
+ * Améliore les performances en supprimant des scripts inutiles
  */
 function ac_disable_emojis() {
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -117,7 +145,8 @@ function ac_disable_emojis() {
 add_action( 'init', 'ac_disable_emojis' );
 
 /**
- * Remove unnecessary header items
+ * Supprimer les éléments inutiles du header
+ * Nettoie le code HTML et améliore légèrement la sécurité
  */
 function ac_clean_head() {
     remove_action( 'wp_head', 'rsd_link' );
@@ -130,16 +159,17 @@ function ac_clean_head() {
 add_action( 'init', 'ac_clean_head' );
 
 /**
- * Add custom body classes
+ * Ajouter des classes CSS personnalisées au body
+ * Permet un ciblage CSS plus précis selon le type de page
  */
 function ac_body_classes( $classes ) {
-    // Add page slug as class
+    // Ajouter le slug de la page comme classe CSS
     if ( is_page() ) {
         global $post;
         $classes[] = 'page-' . $post->post_name;
     }
 
-    // Add class if is front page
+    // Ajouter une classe spécifique pour la page d'accueil
     if ( is_front_page() ) {
         $classes[] = 'is-front-page';
     }
@@ -149,7 +179,8 @@ function ac_body_classes( $classes ) {
 add_filter( 'body_class', 'ac_body_classes' );
 
 /**
- * Custom excerpt length
+ * Longueur personnalisée des extraits
+ * Limite les extraits à 25 mots au lieu des 55 par défaut
  */
 function ac_excerpt_length( $length ) {
     return 25;
@@ -157,7 +188,8 @@ function ac_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'ac_excerpt_length' );
 
 /**
- * Custom excerpt more
+ * Personnaliser le suffixe des extraits
+ * Remplace '[...]' par '...'
  */
 function ac_excerpt_more( $more ) {
     return '...';
@@ -165,35 +197,38 @@ function ac_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'ac_excerpt_more' );
 
 /* ==========================================================================
-   PERFORMANCE OPTIMIZATIONS
+   OPTIMISATIONS DE PERFORMANCE
+   Ces fonctions améliorent la vitesse de chargement et les performances du site
    ========================================================================== */
 
 /**
- * Disable unnecessary features for performance
+ * Désactiver les fonctionnalités inutiles pour améliorer les performances
+ * Supprime les scripts et liens non nécessaires du header HTML
  */
 function ac_performance_optimizations() {
-    // Disable WordPress emoji inline styles and scripts
+    // Désactiver les styles et scripts emoji de WordPress
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
     remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
     remove_action( 'wp_print_styles', 'print_emoji_styles' );
     remove_action( 'admin_print_styles', 'print_emoji_styles' );
     
-    // Remove WordPress version
+    // Supprimer la version de WordPress (sécurité)
     remove_action( 'wp_head', 'wp_generator' );
     
-    // Remove RSD link
+    // Supprimer le lien RSD (Really Simple Discovery)
     remove_action( 'wp_head', 'rsd_link' );
     
-    // Remove Windows Live Writer
+    // Supprimer le support de Windows Live Writer
     remove_action( 'wp_head', 'wlwmanifest_link' );
     
-    // Remove WP JSON/REST API link
+    // Supprimer le lien de l'API REST WordPress
     remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 }
 add_action( 'init', 'ac_performance_optimizations' );
 
 /**
- * Enable lazy loading for images
+ * Activer le chargement différé (lazy loading) pour les images
+ * Les images se chargent uniquement quand elles deviennent visibles
  */
 function ac_add_image_attributes( $attr, $attachment = null ) {
     $attr['loading'] = 'lazy';
@@ -202,7 +237,8 @@ function ac_add_image_attributes( $attr, $attachment = null ) {
 add_filter( 'wp_get_attachment_image_attributes', 'ac_add_image_attributes', 10, 2 );
 
 /**
- * Remove unnecessary emoji script filter
+ * Supprimer le filtre de script emoji inutile
+ * Complète la désactivation des emojis
  */
 function ac_filter_script_loader_tag( $tag, $handle ) {
     if ( 'emoji-js' === $handle ) {
@@ -213,22 +249,24 @@ function ac_filter_script_loader_tag( $tag, $handle ) {
 add_filter( 'script_loader_tag', 'ac_filter_script_loader_tag', 10, 2 );
 
 /**
- * Optimize CSS and JS loading
+ * Optimiser le chargement des CSS et JS
+ * Charge les scripts dans le footer pour améliorer le temps de rendu initial
  */
 function ac_optimize_assets() {
-    // Load scripts in footer for better performance
+    // Charger les scripts dans le footer pour de meilleures performances
     wp_enqueue_script( 
         'ac-main', 
         AC_THEME_URI . '/assets/js/main.js', 
         array(), 
         AC_THEME_VERSION, 
-        true // Load in footer
+        true // Charger dans le footer
     );
 }
-// Hook is already in enqueue.php, but ensure footer loading
+// Le hook est déjà dans enqueue.php, mais on s'assure du chargement en footer
 
 /**
- * Add preconnect and prefetch hints for performance
+ * Ajouter des indices preconnect et prefetch pour les performances
+ * Établit des connexions anticipées aux domaines externes (Google Fonts)
  */
 function ac_add_preconnect_hints() {
     ?>
@@ -239,7 +277,8 @@ function ac_add_preconnect_hints() {
 add_action( 'wp_head', 'ac_add_preconnect_hints', 2 );
 
 /**
- * Add DNS prefetch for external resources
+ * Ajouter la prérésolution DNS pour les ressources externes
+ * Accélère la résolution des noms de domaine
  */
 function ac_add_dns_prefetch() {
     ?>
@@ -249,10 +288,11 @@ function ac_add_dns_prefetch() {
 add_action( 'wp_head', 'ac_add_dns_prefetch', 2 );
 
 /**
- * Defer non-critical CSS
+ * Différer le CSS non critique
+ * Charge les styles de manière optimisée
  */
 function ac_defer_non_critical_css() {
-    // Add loading="async" attribute to stylesheet
+    // Ajouter l'attribut loading="async" aux feuilles de style
     wp_enqueue_style( 
         'ac-style', 
         AC_THEME_URI . '/style.css', 
@@ -262,7 +302,8 @@ function ac_defer_non_critical_css() {
 }
 
 /**
- * Optimize image delivery with srcset for modern formats
+ * Optimiser la livraison d'images avec srcset pour les formats modernes
+ * Crée des tailles d'images supplémentaires pour le responsive
  */
 function ac_add_responsive_images() {
     add_image_size( 'realisation-small', 600, 450, true );
@@ -272,19 +313,20 @@ function ac_add_responsive_images() {
 add_action( 'after_setup_theme', 'ac_add_responsive_images' );
 
 /**
- * Browser caching headers
+ * En-têtes de mise en cache du navigateur
+ * Définit les durées de cache pour les ressources statiques
  */
 function ac_add_cache_headers() {
-    // Set cache headers for static assets
+    // Définir les en-têtes de cache pour les ressources statiques
     if ( ! is_admin() ) {
         header( 'Cache-Control: public, max-age=31536000, immutable', true );
     }
 }
-// Uncomment if not using server-side caching
+// Décommenter si vous n'utilisez pas de cache côté serveur
 // add_action( 'send_headers', 'ac_add_cache_headers' );
 
 /* ==========================================================================
-   END PERFORMANCE OPTIMIZATIONS
+   FIN DES OPTIMISATIONS DE PERFORMANCE
    ========================================================================== */
 
 /**
@@ -300,11 +342,11 @@ function ac_disable_wpautop_on_homepage( $content ) {
 add_filter( 'the_content', 'ac_disable_wpautop_on_homepage', 0 );
 
 /**
- * Ensure WordPress media scripts are loaded in admin
- * This fixes the "Set featured image" button not working
+ * S'assurer que les scripts média WordPress sont chargés dans l'admin
+ * Corrige le problème du bouton "Définir l'image à la une" qui ne fonctionne pas
  */
 function ac_enqueue_admin_scripts( $hook ) {
-    // Load media scripts on post edit screens
+    // Charger les scripts média sur les écrans d'édition d'articles
     if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
         wp_enqueue_media();
     }
@@ -313,13 +355,20 @@ add_action( 'admin_enqueue_scripts', 'ac_enqueue_admin_scripts' );
 
 /**
  * Shortcode pour afficher toutes les matières sur une seule page
+ * 
+ * Ce shortcode permet d'afficher dynamiquement toutes les matières (marbres, granits, etc.)
+ * avec possibilité de filtrage par catégorie via l'URL (?type=granit)
+ * 
  * Usage: [afficher_matieres]
+ * 
+ * @param array $atts Attributs du shortcode (non utilisés actuellement)
+ * @return string HTML généré pour l'affichage des matières
  */
 function ac_shortcode_afficher_matieres( $atts ) {
     // Récupérer le filtre depuis l'URL
     $current_filter = isset( $_GET['type'] ) ? sanitize_text_field( $_GET['type'] ) : 'tous';
     
-    // Arguments de la requête
+    // Arguments de la requête WP_Query pour récupérer les matières
     $args = array(
         'post_type'      => 'matiere',
         'posts_per_page' => -1,
@@ -328,7 +377,7 @@ function ac_shortcode_afficher_matieres( $atts ) {
         'order'          => 'DESC',
     );
     
-    // Ajouter le filtre par catégorie si nécessaire
+    // Ajouter le filtre par catégorie si un type spécifique est demandé
     if ( $current_filter !== 'tous' ) {
         $args['meta_query'] = array(
             array(
@@ -339,10 +388,10 @@ function ac_shortcode_afficher_matieres( $atts ) {
         );
     }
     
-    // Exécuter la requête
+    // Exécuter la requête WordPress pour récupérer les matières
     $matieres_query = new WP_Query( $args );
     
-    // Démarrer le buffer de sortie
+    // Démarrer le buffer de sortie pour capturer le HTML
     ob_start();
     
     if ( $matieres_query->have_posts() ) :
@@ -357,7 +406,7 @@ function ac_shortcode_afficher_matieres( $atts ) {
                     $matiere_description = get_field( 'matiere_description' );
                     $matiere_categorie = get_field( 'matiere_categorie' );
                     
-                    // Gérer l'image (array ou string)
+                    // Gérer l'image (peut être un tableau ACF ou une simple chaîne)
                     $image_url = '';
                     if ( is_array( $matiere_image ) && ! empty( $matiere_image['url'] ) ) {
                         $image_url = $matiere_image['url'];
@@ -392,20 +441,28 @@ function ac_shortcode_afficher_matieres( $atts ) {
     
     wp_reset_postdata();
     
-    // Retourner le contenu du buffer
+    // Retourner le contenu du buffer (HTML généré)
     return ob_get_clean();
 }
 add_shortcode( 'afficher_matieres', 'ac_shortcode_afficher_matieres' );
 
 /**
  * Shortcode pour afficher toutes les matières en HTML statique
+ * 
+ * Version statique du shortcode des matières, avec les 29 matières codées en dur.
+ * Plus rapide car ne nécessite pas de requête en base de données.
+ * Utilisé sur la page principale des matières.
+ * 
  * Usage: [matieres_static]
+ * 
+ * @param array $atts Attributs du shortcode (non utilisés)
+ * @return string HTML généré avec toutes les matières
  */
 function ac_shortcode_matieres_static( $atts ) {
     // Récupérer le filtre depuis l'URL
     $current_filter = isset( $_GET['type'] ) ? sanitize_text_field( $_GET['type'] ) : 'tous';
     
-    // Liste des 29 matières
+    // Liste complète des 29 matières avec leurs informations (nom, catégorie, image, description)
     $matieres = array(
         array( 'nom' => 'STEEL GREY', 'categorie' => 'granit', 'image' => 'matiere/steel-grey.webp', 'description' => 'Le Granit Steel Grey, originaire d\'Inde, se distingue par un fond gris acier homogène parsemé de fines particules argentées, noires et grises. Son aspect équilibré et lumineux confère à cette pierre naturelle un style moderne, sobre et élégant, parfait pour les aménagements intérieurs et extérieurs alliant raffinement, durabilité et résistance.' ),
         array( 'nom' => 'GRANIT DU TARN', 'categorie' => 'granit', 'image' => 'matiere/granit-du-tarn.webp', 'description' => 'Issu du massif du Sidobre, dans le Tarn, ce granit français se caractérise par ses tons gris bleutés et son grain dynamique, rehaussé de cristaux brillants. Sa texture mouchetée apporte un charme authentique et intemporel, tandis que sa robustesse naturelle garantit une fiabilité exceptionnelle pour les projets contemporains comme pour les réalisations plus traditionnelles.' ),
@@ -438,7 +495,7 @@ function ac_shortcode_matieres_static( $atts ) {
         array( 'nom' => 'COMBLANCHIEN', 'categorie' => 'marbre', 'image' => 'matiere/comblanchien.webp', 'description' => 'Le Comblanchien est une pierre calcaire de Bourgogne à grain très fin, naturellement compacte et d\'une belle teinte beige rosé. Parfois traversée de veines ou d\'inclusions fossiles, elle séduit par son aspect raffiné, proche du marbre, et sa grande résistance, idéale pour les projets aussi bien intérieurs qu\'extérieurs.' ),
     );
     
-    // Filtrer selon la catégorie
+    // Filtrer les matières selon la catégorie sélectionnée
     $matieres_filtrees = array();
     foreach ( $matieres as $matiere ) {
         if ( $current_filter === 'tous' || $matiere['categorie'] === $current_filter ) {
@@ -446,7 +503,7 @@ function ac_shortcode_matieres_static( $atts ) {
         }
     }
     
-    // Générer le HTML
+    // Générer le HTML pour afficher les matières filtrées
     ob_start();
     ?>
     <div class="matieres-grid">
@@ -473,10 +530,15 @@ add_shortcode( 'matieres_static', 'ac_shortcode_matieres_static' );
 
 /* ==========================================================================
    SECTION AVIS CLIENTS
+   Gestion de l'affichage de la section avis clients sur la page d'accueil
    ========================================================================== */
 
 /**
  * Ajouter la section Avis Clients avant le footer
+ * 
+ * Cette fonction affiche automatiquement la section des avis clients
+ * sur la page d'accueil, juste avant le footer.
+ * Inclut un carousel d'avis et un formulaire pour ajouter un nouvel avis.
  */
 add_action('get_footer', 'avis_clients_render_section');
 
@@ -591,7 +653,8 @@ function avis_clients_render_section() {
 }
 
 /**
- * Enqueue les styles CSS pour la section Avis Clients
+ * Charger les styles CSS pour la section Avis Clients
+ * Charge uniquement sur la page d'accueil pour optimiser les performances
  */
 add_action('wp_enqueue_scripts', 'avis_clients_enqueue_styles');
 
@@ -607,7 +670,9 @@ function avis_clients_enqueue_styles() {
 }
 
 /**
- * Enqueue le JavaScript pour la section Avis Clients
+ * Charger le JavaScript pour la section Avis Clients
+ * Gère le carousel et le formulaire d'ajout d'avis
+ * Charge uniquement sur la page d'accueil
  */
 add_action('wp_enqueue_scripts', 'avis_clients_enqueue_scripts');
 
@@ -620,5 +685,11 @@ function avis_clients_enqueue_scripts() {
             AC_THEME_VERSION,
             true
         );
+        
+        // Localiser le script avec les variables AJAX pour les requêtes
+        wp_localize_script( 'avis-clients', 'acAjax', array(
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'nonce'   => wp_create_nonce( 'ac_ajax_nonce' ),
+        ) );
     }
 }

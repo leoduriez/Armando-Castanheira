@@ -139,26 +139,12 @@ get_header();
                 </article>
 
                 <article class="legal-section">
-                    <h2>7. Cookies</h2>
-                    <p>Ce site utilise des cookies pour améliorer votre expérience de navigation. Vous pouvez gérer vos préférences de cookies dans les paramètres de votre navigateur.</p>
-                    
-                    <div class="legal-info-box">
-                        <h3>Types de cookies utilisés :</h3>
-                        <ul>
-                            <li><strong>Cookies essentiels :</strong> Nécessaires au fonctionnement du site</li>
-                            <li><strong>Cookies analytiques :</strong> Pour comprendre l'utilisation du site</li>
-                            <li><strong>Cookies de préférence :</strong> Pour mémoriser vos choix</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="legal-section">
-                    <h2>8. Modifications de la politique</h2>
+                    <h2>7. Modifications de la politique</h2>
                     <p>Nous pouvons mettre à jour cette politique de confidentialité à tout moment. La version la plus récente est toujours affichée sur cette page avec la date de dernière mise à jour.</p>
                 </article>
 
                 <article class="legal-section">
-                    <h2>9. Contact</h2>
+                    <h2>8. Contact</h2>
                     <p>Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, vous pouvez nous contacter :</p>
                     
                     <div class="legal-contact-info">

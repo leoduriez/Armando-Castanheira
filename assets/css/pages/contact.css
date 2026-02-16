@@ -125,24 +125,28 @@
 .form-header {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
-    flex-wrap: wrap;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-title {
     font-family: var(--font-title);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 600;
     color: var(--color-brown-dark);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0;
+    white-space: nowrap;
 }
 
 .form-link {
     font-family: var(--font-title);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 600;
     color: var(--color-brown-dark);
     text-transform: uppercase;
@@ -150,6 +154,7 @@
     opacity: 0.5;
     text-underline-offset: 4px;
     transition: opacity var(--transition-fast);
+    white-space: nowrap;
 }
 
 .form-link:hover {
@@ -174,6 +179,7 @@
 
 .contact-form {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .form-grid {

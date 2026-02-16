@@ -19,6 +19,19 @@
     position: relative;
 }
 
+/* Dark overlay for better text contrast */
+.page-404::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    z-index: 1;
+}
+
 body.error404 {
     overflow: hidden;
 }
@@ -42,7 +55,7 @@ body.error404 {
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .error-404__content {
@@ -58,6 +71,7 @@ body.error404 {
     color: #ffffff;
     margin: 0 0 0.5rem;
     letter-spacing: 0.02em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .error-404__message {
@@ -67,6 +81,7 @@ body.error404 {
     color: #ffffff;
     margin: 0 0 0.8rem;
     opacity: 1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .error-404__btn {

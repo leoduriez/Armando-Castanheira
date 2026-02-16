@@ -2,27 +2,37 @@
  * ========================================
  * SECTION AVIS CLIENTS - JAVASCRIPT
  * ========================================
- * Gestion du carousel et du formulaire d'avis clients
+ * 
+ * Gestion complète de la section avis clients :
+ * - Carousel d'avis avec navigation et swipe mobile
+ * - Formulaire d'ajout d'avis avec validation
+ * - Système de notation par étoiles
+ * - Sauvegarde en base de données via AJAX
+ * - Indicateurs de pagination
+ * 
+ * @package Armando_Castanheira
  * @version 1.0.0
  */
 
 (function() {
     'use strict';
 
-    // Configuration
+    // Configuration globale de l'application
     const CONFIG = {
-        storageKey: 'avis_clients_data',
         maxAvis: 50,
-        animationDuration: 500
+        animationDuration: 500,
+        ajaxUrl: window.acAjax?.ajaxurl || '/wp-admin/admin-ajax.php',
+        nonce: window.acAjax?.nonce || ''
     };
 
-    // État de l'application
+    // Variables d'état globales
     let currentSlide = 0;
     let avisData = [];
     let selectedRating = 0;
 
     /**
      * Initialisation au chargement du DOM
+     * Lance l'initialisation dès que le DOM est prêt
      */
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAvisSection);
@@ -32,6 +42,7 @@
 
     /**
      * Fonction principale d'initialisation
+     * Initialise tous les composants de la section avis clients
      */
     function initAvisSection() {
         loadAvisFromStorage();
@@ -43,7 +54,8 @@
 
     /**
      * ========================================
-     * GESTION DU CAROUSEL
+     * GESTION DU CAROUSEL D'AVIS
+     * Carousel responsive avec navigation par boutons, indicateurs et swipe
      * ========================================
      */
 
@@ -64,8 +76,10 @@
     function navigateCarousel(direction) {
         const totalSlides = avisData.length;
         
+        // Ne rien faire s'il n'y a pas d'avis
         if (totalSlides === 0) return;
 
+        // Navigation circulaire (revient au début/fin)
         if (direction === 'prev') {
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         } else {
@@ -76,15 +90,18 @@
     }
 
     function updateCarousel() {
+        // Mettre à jour l'affichage du carousel
         const track = document.querySelector('.carousel-track');
         const prevBtn = document.querySelector('.carousel-prev');
         const nextBtn = document.querySelector('.carousel-next');
 
         if (!track) return;
 
+        // Afficher les avis et déplacer le carousel
         renderAvis();
         track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
+        // Désactiver les boutons s'il n'y a qu'un seul avis
         const totalSlides = avisData.length;
         if (prevBtn && nextBtn) {
             prevBtn.disabled = totalSlides <= 1;
@@ -95,11 +112,14 @@
     }
 
     function renderAvis() {
+        // Générer le HTML de tous les avis
         const track = document.querySelector('.carousel-track');
         if (!track) return;
 
+        // Vider le contenu existant
         track.innerHTML = '';
 
+        // Afficher un message si aucun avis
         if (avisData.length === 0) {
             track.innerHTML = `
                 <div class="avis-card">
@@ -122,6 +142,7 @@
             return;
         }
 
+        // Créer et ajouter une carte pour chaque avis
         avisData.forEach(avis => {
             const card = createAvisCard(avis);
             track.appendChild(card);
@@ -129,10 +150,13 @@
     }
 
     function createAvisCard(avis) {
+        // Créer une carte d'avis avec avatar, nom, étoiles et commentaire
         const card = document.createElement('div');
         card.className = 'avis-card';
 
+        // Générer l'initiale pour l'avatar
         const initial = avis.prenom.charAt(0).toUpperCase();
+        // Générer les étoiles selon la note
         const starsHTML = generateStarsHTML(avis.rating);
 
         card.innerHTML = `
@@ -152,6 +176,7 @@
     }
 
     function generateStarsHTML(rating) {
+        // Générer le HTML des 5 étoiles (remplies ou vides)
         let html = '';
         for (let i = 1; i <= 5; i++) {
             html += `<span class="star ${i <= rating ? 'filled' : ''}">★</span>`;
@@ -160,11 +185,13 @@
     }
 
     function createIndicators() {
+        // Créer les indicateurs de pagination (points)
         const container = document.querySelector('.carousel-indicators');
         if (!container) return;
 
         container.innerHTML = '';
 
+        // Ne pas afficher d'indicateurs s'il n'y a qu'un seul avis
         if (avisData.length <= 1) return;
 
         avisData.forEach((_, index) => {
@@ -191,9 +218,11 @@
     }
 
     function initSwipeSupport() {
+        // Activer la navigation par swipe sur mobile
         const carousel = document.querySelector('.avis-carousel');
         if (!carousel) return;
 
+        // Variables pour détecter le swipe
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -207,13 +236,16 @@
         }, { passive: true });
 
         function handleSwipe() {
-            const swipeThreshold = 50;
+            // Déterminer la direction du swipe
+            const swipeThreshold = 50; // Seuil minimum de 50px
             const diff = touchStartX - touchEndX;
 
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
+                    // Swipe vers la gauche = suivant
                     navigateCarousel('next');
                 } else {
+                    // Swipe vers la droite = précédent
                     navigateCarousel('prev');
                 }
             }
@@ -264,32 +296,30 @@
 
         toggleSubmitButton(true);
 
-        setTimeout(() => {
-            const nouvelAvis = {
-                id: Date.now(),
-                prenom: prenom,
-                commentaire: commentaire,
-                rating: rating,
-                date: new Date().toISOString()
-            };
-
-            addAvis(nouvelAvis);
-
-            form.reset();
-            resetRating();
-            document.querySelector('.char-count').textContent = '0/500';
-
-            showMessage('Merci pour votre avis ! Il a été ajouté avec succès.', 'success');
-
+        // Envoyer l'avis à la base de données
+        saveAvisToDatabase(prenom, commentaire, rating, (response) => {
             toggleSubmitButton(false);
 
-            setTimeout(() => {
-                document.querySelector('.avis-carousel-wrapper').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
-            }, 500);
-        }, 1000);
+            if (response.success) {
+                form.reset();
+                resetRating();
+                document.querySelector('.char-count').textContent = '0/500';
+
+                showMessage(response.data.message || 'Merci pour votre avis !', 'success');
+
+                // Recharger les avis depuis la base de données
+                loadAvisFromStorage();
+
+                setTimeout(() => {
+                    document.querySelector('.avis-carousel-wrapper').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }, 500);
+            } else {
+                showMessage(response.data.message || 'Une erreur est survenue.', 'error');
+            }
+        });
     }
 
     function toggleSubmitButton(loading) {
@@ -389,42 +419,73 @@
      */
 
     function loadAvisFromStorage() {
-        try {
-            const stored = localStorage.getItem(CONFIG.storageKey);
-            if (stored) {
-                avisData = JSON.parse(stored);
+        // Charger les avis depuis la base de données via AJAX
+        fetch(CONFIG.ajaxUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'get_avis_clients',
+                nonce: CONFIG.nonce,
+                limit: CONFIG.maxAvis
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.data.avis) {
+                avisData = data.data.avis.map(avis => ({
+                    id: avis.id,
+                    prenom: avis.prenom,
+                    commentaire: avis.commentaire,
+                    rating: parseInt(avis.rating),
+                    date: avis.date_creation
+                }));
             } else {
-                avisData = [
-                    {
-                        id: 1,
-                        prenom: 'Marie',
-                        commentaire: 'Excellent service ! Je recommande vivement. L\'équipe est très professionnelle et à l\'écoute.',
-                        rating: 5,
-                        date: new Date().toISOString()
-                    }
-                ];
-                saveAvisToStorage();
+                avisData = [];
             }
-        } catch (error) {
+            updateCarousel();
+            createIndicators();
+        })
+        .catch(error => {
             console.error('Erreur lors du chargement des avis:', error);
             avisData = [];
-        }
+            updateCarousel();
+            createIndicators();
+        });
     }
 
-    function saveAvisToStorage() {
-        try {
-            if (avisData.length > CONFIG.maxAvis) {
-                avisData = avisData.slice(-CONFIG.maxAvis);
+    function saveAvisToDatabase(prenom, commentaire, rating, callback) {
+        // Sauvegarder l'avis dans la base de données via AJAX
+        fetch(CONFIG.ajaxUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'add_avis_client',
+                nonce: CONFIG.nonce,
+                prenom: prenom,
+                commentaire: commentaire,
+                rating: rating
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (callback) {
+                callback(data);
             }
-            localStorage.setItem(CONFIG.storageKey, JSON.stringify(avisData));
-        } catch (error) {
-            console.error('Erreur lors de la sauvegarde des avis:', error);
-        }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la sauvegarde de l\'avis:', error);
+            if (callback) {
+                callback({ success: false, data: { message: 'Erreur réseau' } });
+            }
+        });
     }
 
     function addAvis(avis) {
         avisData.unshift(avis);
-        saveAvisToStorage();
         currentSlide = 0;
         updateCarousel();
         createIndicators();
@@ -446,42 +507,25 @@
         getAvis: function() {
             return [...avisData];
         },
-        addAvis: function(prenom, commentaire, rating) {
+        addAvis: function(prenom, commentaire, rating, callback) {
             if (!prenom || !commentaire || !rating) {
                 console.error('Paramètres manquants');
                 return false;
             }
-            const nouvelAvis = {
-                id: Date.now(),
-                prenom: prenom,
-                commentaire: commentaire,
-                rating: parseInt(rating),
-                date: new Date().toISOString()
-            };
-            addAvis(nouvelAvis);
+            saveAvisToDatabase(prenom, commentaire, rating, (response) => {
+                if (response.success) {
+                    loadAvisFromStorage();
+                }
+                if (callback) callback(response);
+            });
             return true;
         },
-        loadAvis: function(avisArray) {
-            if (!Array.isArray(avisArray)) {
-                console.error('Le paramètre doit être un tableau');
-                return false;
-            }
-            avisData = avisArray;
-            saveAvisToStorage();
-            currentSlide = 0;
-            updateCarousel();
-            createIndicators();
+        loadAvis: function() {
+            loadAvisFromStorage();
             return true;
         },
         clearAvis: function() {
-            if (confirm('Êtes-vous sûr de vouloir effacer tous les avis ?')) {
-                avisData = [];
-                saveAvisToStorage();
-                currentSlide = 0;
-                updateCarousel();
-                createIndicators();
-                return true;
-            }
+            console.warn('La suppression des avis doit se faire depuis l\'administration WordPress.');
             return false;
         }
     };

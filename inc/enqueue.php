@@ -1,6 +1,10 @@
 <?php
 /**
- * Enqueue scripts and styles
+ * Chargement des scripts et styles
+ * 
+ * Ce fichier gère le chargement conditionnel de tous les CSS et JavaScript du thème.
+ * Les styles et scripts sont chargés uniquement sur les pages qui en ont besoin
+ * pour optimiser les performances.
  *
  * @package Armando_Castanheira
  */
@@ -10,10 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Enqueue styles
+ * Charger les feuilles de style CSS
+ * 
+ * Charge les styles de manière conditionnelle selon le type de page.
+ * Inclut Google Fonts, le style principal et les styles spécifiques aux pages.
  */
 function ac_enqueue_styles() {
-    // Google Fonts - Archivo & Cormorant (optimized with display=swap for faster rendering)
+    // Google Fonts - Archivo & Cormorant (optimisé avec display=swap pour un rendu plus rapide)
     wp_enqueue_style(
         'ac-google-fonts',
         'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap',
@@ -22,7 +29,7 @@ function ac_enqueue_styles() {
         'all'
     );
 
-    // Main stylesheet
+    // Feuille de style principale du thème
     wp_enqueue_style(
         'ac-main-style',
         AC_THEME_URI . '/style.css',
@@ -31,7 +38,7 @@ function ac_enqueue_styles() {
         'all'
     );
 
-    // Home page styles
+    // Styles spécifiques à la page d'accueil
     if ( is_front_page() || is_page_template( 'page-templates/template-accueil.php' ) ) {
         wp_enqueue_style(
             'ac-home-style',
@@ -41,7 +48,7 @@ function ac_enqueue_styles() {
         );
     }
 
-    // Page Réalisations
+    // Styles pour la page des réalisations
     if ( is_page( 'marbre-sur-mesure' ) || is_page_template( 'page-realisations.php' ) || is_page_template( 'page-templates/template-realisations.php' ) ) {
         wp_enqueue_style(
             'ac-realisations-style',
@@ -90,7 +97,7 @@ function ac_enqueue_styles() {
         );
     }
 
-    // 404 page styles
+    // Styles pour la page d'erreur 404
     if ( is_404() ) {
         wp_enqueue_style(
             'ac-404-style',
@@ -100,7 +107,7 @@ function ac_enqueue_styles() {
         );
     }
 
-    // Legal pages styles (CGU & Confidentialité)
+    // Styles pour les pages légales (CGU et Politique de confidentialité)
     if ( is_page_template( 'page-cgu.php' ) || is_page_template( 'page-confidentialite.php' ) ) {
         wp_enqueue_style(
             'ac-legal-style',
@@ -113,19 +120,22 @@ function ac_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'ac_enqueue_styles' );
 
 /**
- * Enqueue scripts
+ * Charger les scripts JavaScript
+ * 
+ * Charge les scripts de manière conditionnelle selon le type de page.
+ * Tous les scripts utilisent du JavaScript Vanilla (pas de jQuery).
  */
 function ac_enqueue_scripts() {
-    // Main JavaScript - Vanilla JS only, no jQuery
+    // JavaScript principal - Vanilla JS uniquement, pas de jQuery
     wp_enqueue_script(
         'ac-main-script',
         AC_THEME_URI . '/assets/js/main.js',
-        array(), // No dependencies - pure Vanilla JS
+        array(), // Aucune dépendance - pur Vanilla JS
         AC_THEME_VERSION,
-        true // Load in footer
+        true // Charger dans le footer
     );
 
-    // Localize script for AJAX
+    // Localiser le script pour les requêtes AJAX (passer des variables PHP vers JS)
     wp_localize_script( 'ac-main-script', 'acAjax', array(
         'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
         'nonce'        => wp_create_nonce( 'ac_ajax_nonce' ),
@@ -134,7 +144,7 @@ function ac_enqueue_scripts() {
         'heroVideoUrl' => get_theme_mod( 'ac_hero_video_url', '' ),
     ) );
 
-    // Filter script for Matières page
+    // Script de filtrage pour la page des matières
     if ( is_page_template( 'page-templates/template-matieres.php' ) || is_post_type_archive( 'matiere' ) ) {
         wp_enqueue_script(
             'ac-filter-script',
@@ -144,7 +154,7 @@ function ac_enqueue_scripts() {
             true
         );
         
-        // Matières card interaction script
+        // Script d'interaction pour les cartes de matières
         wp_enqueue_script(
             'ac-matieres-script',
             AC_THEME_URI . '/assets/js/matieres.js',
@@ -154,7 +164,7 @@ function ac_enqueue_scripts() {
         );
     }
 
-    // Forms script for Contact page
+    // Script de gestion des formulaires pour la page de contact
     if ( is_page_template( 'page-templates/template-contact.php' ) ) {
         wp_enqueue_script(
             'ac-forms-script',
@@ -168,7 +178,8 @@ function ac_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'ac_enqueue_scripts' );
 
 /**
- * Add preconnect for Google Fonts
+ * Ajouter preconnect pour Google Fonts
+ * Améliore les performances en établissant une connexion anticipée
  */
 function ac_preconnect_google_fonts( $urls, $relation_type ) {
     if ( 'preconnect' === $relation_type ) {
@@ -185,10 +196,11 @@ function ac_preconnect_google_fonts( $urls, $relation_type ) {
 add_filter( 'wp_resource_hints', 'ac_preconnect_google_fonts', 10, 2 );
 
 /**
- * Add defer attribute to scripts for better performance
+ * Ajouter l'attribut defer aux scripts pour de meilleures performances
+ * Les scripts se chargent en parallèle sans bloquer le rendu de la page
  */
 function ac_defer_scripts( $tag, $handle, $src ) {
-    // Scripts to defer
+    // Liste des scripts à différer
     $defer_scripts = array(
         'ac-main-script',
         'ac-filter-script',

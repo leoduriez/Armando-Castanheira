@@ -1,16 +1,27 @@
 <?php
 /**
- * Template Functions and Helpers
+ * Fonctions de template et helpers
+ * 
+ * Ce fichier contient des fonctions utilitaires pour les templates :
+ * - Gestion du logo
+ * - Récupération des réalisations et matières
+ * - Affichage des filtres
+ * - Gestion des images
+ * - Liens réseaux sociaux
+ * - Fil d'Ariane (breadcrumb)
  *
  * @package Armando_Castanheira
  */
 
+// Sécurité : empêche l'accès direct au fichier
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
 /**
- * Get custom logo URL
+ * Récupérer l'URL du logo personnalisé
+ * 
+ * @return string URL du logo
  */
 function ac_get_logo_url() {
     $custom_logo_id = get_theme_mod( 'custom_logo' );
@@ -23,7 +34,9 @@ function ac_get_logo_url() {
 }
 
 /**
- * Display custom logo
+ * Afficher le logo personnalisé
+ * 
+ * @param string $class Classes CSS supplémentaires
  */
 function ac_display_logo( $class = '' ) {
     $logo_url = ac_get_logo_url();
@@ -39,7 +52,11 @@ function ac_display_logo( $class = '' ) {
 }
 
 /**
- * Get réalisations by type
+ * Récupérer les réalisations par type
+ * 
+ * @param string $type Type de réalisation (slug de la taxonomie)
+ * @param int $limit Nombre maximum de résultats (-1 pour tous)
+ * @return WP_Query Objet de requête WordPress
  */
 function ac_get_realisations( $type = '', $limit = -1 ) {
     $args = array(
@@ -64,7 +81,11 @@ function ac_get_realisations( $type = '', $limit = -1 ) {
 }
 
 /**
- * Get matières by type
+ * Récupérer les matières par type
+ * 
+ * @param string $type Type de matière (slug de la taxonomie)
+ * @param int $limit Nombre maximum de résultats (-1 pour tous)
+ * @return WP_Query Objet de requête WordPress
  */
 function ac_get_matieres( $type = '', $limit = -1 ) {
     $args = array(
@@ -89,7 +110,10 @@ function ac_get_matieres( $type = '', $limit = -1 ) {
 }
 
 /**
- * Get all terms for a taxonomy
+ * Récupérer tous les termes d'une taxonomie
+ * 
+ * @param string $taxonomy Nom de la taxonomie
+ * @return array|WP_Error Liste des termes
  */
 function ac_get_filter_terms( $taxonomy ) {
     return get_terms( array(
@@ -101,7 +125,10 @@ function ac_get_filter_terms( $taxonomy ) {
 }
 
 /**
- * Display filter bar for réalisations or matières
+ * Afficher la barre de filtres pour les réalisations ou matières
+ * 
+ * @param string $taxonomy Nom de la taxonomie
+ * @param string $all_label Label du bouton "Tous"
  */
 function ac_display_filter_bar( $taxonomy, $all_label = 'Tous' ) {
     $terms = ac_get_filter_terms( $taxonomy );
@@ -132,19 +159,27 @@ function ac_display_filter_bar( $taxonomy, $all_label = 'Tous' ) {
 }
 
 /**
- * Get post thumbnail with fallback
+ * Récupérer l'URL de l'image à la une avec fallback
+ * 
+ * @param int $post_id ID de l'article
+ * @param string $size Taille de l'image
+ * @return string URL de l'image
  */
 function ac_get_thumbnail_url( $post_id, $size = 'large' ) {
     if ( has_post_thumbnail( $post_id ) ) {
         return get_the_post_thumbnail_url( $post_id, $size );
     }
     
-    // Fallback image
+    // Image de remplacement par défaut
     return AC_THEME_URI . '/assets/images/placeholder.jpg';
 }
 
 /**
- * Display responsive image with lazy loading
+ * Afficher une image responsive avec lazy loading
+ * 
+ * @param int $post_id ID de l'article
+ * @param string $size Taille de l'image
+ * @param string $class Classes CSS
  */
 function ac_display_image( $post_id, $size = 'large', $class = '' ) {
     if ( has_post_thumbnail( $post_id ) ) {
@@ -162,7 +197,12 @@ function ac_display_image( $post_id, $size = 'large', $class = '' ) {
 }
 
 /**
- * Truncate text to a specific length
+ * Tronquer un texte à une longueur spécifique
+ * 
+ * @param string $text Texte à tronquer
+ * @param int $length Longueur maximale
+ * @param string $suffix Suffixe à ajouter
+ * @return string Texte tronqué
  */
 function ac_truncate_text( $text, $length = 150, $suffix = '...' ) {
     $text = wp_strip_all_tags( $text );
@@ -178,7 +218,10 @@ function ac_truncate_text( $text, $length = 150, $suffix = '...' ) {
 }
 
 /**
- * Get social media links (to be set in Customizer)
+ * Récupérer les liens des réseaux sociaux
+ * Les URLs sont définies dans le Customizer WordPress
+ * 
+ * @return array Tableau associatif des liens sociaux
  */
 function ac_get_social_links() {
     return array(
@@ -188,7 +231,8 @@ function ac_get_social_links() {
 }
 
 /**
- * Display social icons
+ * Afficher les icônes des réseaux sociaux
+ * Génère le HTML avec les icônes SVG
  */
 function ac_display_social_icons() {
     $social_links = ac_get_social_links();
@@ -225,7 +269,8 @@ function ac_display_social_icons() {
 }
 
 /**
- * Breadcrumb navigation
+ * Navigation fil d'Ariane (breadcrumb)
+ * Affiche le chemin de navigation pour améliorer l'UX et le SEO
  */
 function ac_breadcrumb() {
     if ( is_front_page() ) {

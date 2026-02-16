@@ -1,16 +1,24 @@
 <?php
 /**
- * Custom Taxonomies Registration
+ * Enregistrement des taxonomies personnalisées
+ * 
+ * Ce fichier enregistre les taxonomies (catégories) pour les CPT :
+ * - Type de réalisation : pour catégoriser les projets (cuisine, salle de bain, autres)
+ * - Type de matière : pour catégoriser les matières (marbre, granit, quartzite)
  *
  * @package Armando_Castanheira
  */
 
+// Sécurité : empêche l'accès direct au fichier
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
 /**
- * Register Taxonomy: Type de Réalisation
+ * Enregistrer la taxonomie : Type de Réalisation
+ * 
+ * Permet de catégoriser les réalisations par type de pièce.
+ * Fonctionne comme les catégories WordPress standard.
  */
 function ac_register_type_realisation_taxonomy() {
     $labels = array(
@@ -31,7 +39,7 @@ function ac_register_type_realisation_taxonomy() {
 
     $args = array(
         'labels'            => $labels,
-        'hierarchical'      => true, // Like categories
+        'hierarchical'      => true, // Comme les catégories (hiérarchique)
         'public'            => true,
         'show_ui'           => true,
         'show_admin_column' => true,
@@ -49,7 +57,8 @@ function ac_register_type_realisation_taxonomy() {
 add_action( 'init', 'ac_register_type_realisation_taxonomy' );
 
 /**
- * Insert default realisation types
+ * Insérer les types de réalisation par défaut
+ * Crée automatiquement les catégories : Cuisine, Salle de bain, Autres
  */
 function ac_insert_default_realisation_types() {
     $default_terms = array(
@@ -66,7 +75,10 @@ function ac_insert_default_realisation_types() {
 }
 
 /**
- * Register Taxonomy: Type de Matière
+ * Enregistrer la taxonomie : Type de Matière
+ * 
+ * Permet de catégoriser les matières par type de pierre.
+ * Utilisé pour le filtrage sur la page des matières.
  */
 function ac_register_type_matiere_taxonomy() {
     $labels = array(
@@ -105,7 +117,8 @@ function ac_register_type_matiere_taxonomy() {
 add_action( 'init', 'ac_register_type_matiere_taxonomy' );
 
 /**
- * Insert default matière types
+ * Insérer les types de matière par défaut
+ * Crée automatiquement les catégories : Marbre, Granite, Quartzite
  */
 function ac_insert_default_matiere_types() {
     $default_terms = array(

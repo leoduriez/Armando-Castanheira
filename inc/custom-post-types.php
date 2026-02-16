@@ -1,16 +1,24 @@
 <?php
 /**
- * Custom Post Types Registration
+ * Enregistrement des types de contenu personnalisés (Custom Post Types)
+ * 
+ * Ce fichier enregistre les CPT suivants :
+ * - Réalisations : pour afficher les projets de marbrerie
+ * - Matières : pour présenter les différents types de pierres (marbres, granits, quartzites)
  *
  * @package Armando_Castanheira
  */
 
+// Sécurité : empêche l'accès direct au fichier
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
 /**
- * Register Custom Post Type: Réalisations
+ * Enregistrer le type de contenu personnalisé : Réalisations
+ * 
+ * Permet de créer et gérer les réalisations (projets de marbrerie).
+ * Chaque réalisation peut avoir une image à la une, une description, etc.
  */
 function ac_register_realisation_cpt() {
     $labels = array(
@@ -47,7 +55,7 @@ function ac_register_realisation_cpt() {
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-images-alt2',
         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-        'show_in_rest'       => true, // Enable Gutenberg editor
+        'show_in_rest'       => true, // Activer l'éditeur Gutenberg
     );
 
     register_post_type( 'realisation', $args );
@@ -55,7 +63,10 @@ function ac_register_realisation_cpt() {
 add_action( 'init', 'ac_register_realisation_cpt' );
 
 /**
- * Register Custom Post Type: Matières
+ * Enregistrer le type de contenu personnalisé : Matières
+ * 
+ * Permet de créer et gérer les différentes matières (marbres, granits, quartzites).
+ * Chaque matière a une image, une description et une catégorie.
  */
 function ac_register_matiere_cpt() {
     $labels = array(
@@ -100,7 +111,8 @@ function ac_register_matiere_cpt() {
 add_action( 'init', 'ac_register_matiere_cpt' );
 
 /**
- * Flush rewrite rules on theme activation
+ * Vider les règles de réécriture lors de l'activation du thème
+ * Nécessaire pour que les URLs des CPT fonctionnent correctement
  */
 function ac_rewrite_flush() {
     ac_register_realisation_cpt();

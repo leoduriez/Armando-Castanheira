@@ -1,6 +1,13 @@
 <?php
 /**
- * The footer template
+ * Template du footer (pied de page)
+ * 
+ * Contient la structure HTML du footer avec :
+ * - Logo
+ * - Navigation footer
+ * - Liens réseaux sociaux
+ * - Mentions légales et politique de confidentialité (accordéons)
+ * - Copyright
  *
  * @package Armando_Castanheira
  */
@@ -10,12 +17,12 @@
 <footer class="site-footer" id="site-footer">
     <div class="container">
         <div class="footer-inner">
-            <!-- Logo à gauche -->
+            <!-- Logo du site à gauche -->
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo">
                 <img src="<?php echo esc_url( AC_THEME_URI . '/assets/images/common/logo-ac.webp' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
             </a>
 
-            <!-- Navigation centrale -->
+            <!-- Navigation du footer au centre -->
             <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Navigation footer', 'armando-castanheira' ); ?>">
                 <ul class="footer-menu">
                     <li><a href="<?php echo esc_url( home_url( '/marbre-sur-mesure/' ) ); ?>"><?php esc_html_e( 'Réalisations', 'armando-castanheira' ); ?></a></li>
@@ -25,7 +32,7 @@
                 </ul>
             </nav>
 
-            <!-- Icônes réseaux sociaux à droite -->
+            <!-- Liens vers les réseaux sociaux à droite -->
             <div class="footer-social">
                 <a href="https://www.instagram.com/armando_castanheira_marbre/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -54,7 +61,7 @@
             <span>Armando Castanheira <?php echo date( 'Y' ); ?></span>
         </div>
         
-        <!-- Accordéon Mentions Légales / CGU -->
+        <!-- Accordéon pour les Mentions Légales et CGU (Conditions Générales d'Utilisation) -->
         <div class="footer-accordion" id="mentions-legales">
             <div class="footer-accordion__content">
                 <h3>Conditions Générales d'Utilisation</h3>
@@ -93,7 +100,7 @@
             </div>
         </div>
         
-        <!-- Accordéon Politique de Confidentialité -->
+        <!-- Accordéon pour la Politique de Confidentialité (RGPD) -->
         <div class="footer-accordion" id="politique-confidentialite">
             <div class="footer-accordion__content">
                 <h3>Politique de Confidentialité</h3>
@@ -122,13 +129,10 @@
                 <h4>6. Conservation des données</h4>
                 <p>Les données sont conservées seulement le temps nécessaire à nos finalités.</p>
                 
-                <h4>7. Cookies</h4>
-                <p>Ce site utilise des cookies pour améliorer votre expérience de navigation. Vous pouvez gérer vos préférences de cookies dans les paramètres de votre navigateur.</p>
-                
-                <h4>8. Modifications de la politique</h4>
+                <h4>7. Modifications de la politique</h4>
                 <p>Nous pouvons mettre à jour cette politique à tout moment. La version la plus récente est toujours affichée sur cette page.</p>
                 
-                <h4>9. Contact</h4>
+                <h4>8. Contact</h4>
                 <p>Pour toute question, contactez-nous :<br>
                 <strong>Email :</strong> <a href="mailto:armandocastanhieramb@gmail.com">armandocastanhieramb@gmail.com</a><br>
                 <strong>Téléphone :</strong> <a href="tel:+33685240768">+33 6 85 24 07 68</a><br>

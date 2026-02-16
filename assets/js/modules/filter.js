@@ -1,6 +1,9 @@
 /**
- * Filter Module - Vanilla JS
- * Handles AJAX filtering for Réalisations and Matières
+ * Module de filtrage - Vanilla JS
+ * 
+ * Gère le filtrage AJAX pour les Réalisations et Matières.
+ * Permet de filtrer dynamiquement le contenu sans recharger la page.
+ * Inclut la gestion de l'historique du navigateur et l'accessibilité.
  * 
  * @package Armando_Castanheira
  */
@@ -9,7 +12,8 @@
 
 (function() {
     /**
-     * Filter Controller
+     * Contrôleur de filtrage
+     * Classe principale qui gère toute la logique de filtrage
      */
     class FilterController {
         constructor(options) {
@@ -26,10 +30,12 @@
         }
         
         init() {
+            // Initialiser les événements
             this.bindEvents();
         }
         
         bindEvents() {
+            // Attacher les événements de clic aux boutons de filtre
             const filterButtons = this.filterBar.querySelectorAll('.filter-btn');
             
             filterButtons.forEach(button => {
@@ -41,17 +47,18 @@
             const button = e.currentTarget;
             const filterValue = button.dataset.filter;
             
-            // Update active state
+            // Mettre à jour l'état actif du bouton
             this.updateActiveButton(button);
             
-            // Fetch filtered content
+            // Récupérer le contenu filtré via AJAX
             this.fetchContent(filterValue);
             
-            // Update URL without reload (for bookmarking)
+            // Mettre à jour l'URL sans recharger (pour les marque-pages)
             this.updateURL(filterValue);
         }
         
         updateActiveButton(activeButton) {
+            // Retirer la classe active de tous les boutons
             const allButtons = this.filterBar.querySelectorAll('.filter-btn');
             
             allButtons.forEach(btn => {
@@ -59,12 +66,13 @@
                 btn.setAttribute('aria-pressed', 'false');
             });
             
+            // Ajouter la classe active au bouton cliqué
             activeButton.classList.add('active');
             activeButton.setAttribute('aria-pressed', 'true');
         }
         
         async fetchContent(filterValue) {
-            // Show loading state
+            // Afficher l'état de chargement
             this.contentContainer.classList.add(this.loadingClass);
             this.contentContainer.setAttribute('aria-busy', 'true');
             
@@ -81,14 +89,16 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('La réponse réseau n\'est pas correcte');
                 }
                 
                 const data = await response.json();
                 
                 if (data.success) {
+                    // Afficher le contenu filtré
                     this.renderContent(data.data.html);
                 } else {
+                    // Afficher un message d'erreur
                     this.showError(data.data?.message || 'Une erreur est survenue.');
                 }
             } catch (error) {
@@ -101,16 +111,17 @@
         }
         
         renderContent(html) {
-            // Fade out
+            // Animation de fondu sortant
             this.contentContainer.style.opacity = '0';
             
             setTimeout(() => {
+                // Remplacer le contenu
                 this.contentContainer.innerHTML = html;
                 
-                // Fade in
+                // Animation de fondu entrant
                 this.contentContainer.style.opacity = '1';
                 
-                // Announce to screen readers
+                // Annoncer la mise à jour aux lecteurs d'écran
                 this.announceUpdate();
             }, 200);
         }
@@ -124,19 +135,23 @@
         }
         
         updateURL(filterValue) {
+            // Mettre à jour l'URL dans la barre d'adresse sans recharger
             const url = new URL(window.location);
             
             if (filterValue === 'tous' || filterValue === 'toutes') {
+                // Supprimer le paramètre si "tous" est sélectionné
                 url.searchParams.delete('type');
             } else {
+                // Ajouter/modifier le paramètre de filtre
                 url.searchParams.set('type', filterValue);
             }
             
+            // Mettre à jour l'historique du navigateur
             window.history.pushState({}, '', url);
         }
         
         announceUpdate() {
-            // Create live region for screen readers
+            // Créer une région live pour les lecteurs d'écran (accessibilité)
             let liveRegion = document.getElementById('filter-live-region');
             
             if (!liveRegion) {
@@ -154,10 +169,11 @@
     }
     
     /**
-     * Initialize filters based on page
+     * Initialiser les filtres selon la page
+     * Détecte automatiquement le type de page et initialise le bon filtre
      */
     function initFilters() {
-        // Check if we're on matières page
+        // Vérifier si on est sur la page des matières
         if (document.body.classList.contains('page-template-template-matieres') || 
             document.body.classList.contains('post-type-archive-matiere')) {
             new FilterController({
@@ -169,7 +185,8 @@
     }
     
     /**
-     * Handle browser back/forward
+     * Gérer les boutons précédent/suivant du navigateur
+     * Permet de naviguer dans l'historique des filtres
      */
     function handlePopState() {
         window.addEventListener('popstate', function() {
@@ -184,7 +201,7 @@
     }
     
     /**
-     * Initialize on DOM ready
+     * Initialiser quand le DOM est prêt
      */
     if (typeof AC !== 'undefined' && AC.domReady) {
         AC.domReady(function() {

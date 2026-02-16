@@ -1,16 +1,26 @@
 <?php
 /**
- * Security Functions
+ * Fonctions de sécurité
+ * 
+ * Ce fichier contient toutes les mesures de sécurité du thème :
+ * - Suppression des informations sensibles (version WordPress)
+ * - Désactivation de XML-RPC
+ * - Protection contre l'énumération des utilisateurs
+ * - En-têtes de sécurité HTTP
+ * - Limitation des tentatives de connexion
+ * - Sanitisation des noms de fichiers
  *
  * @package Armando_Castanheira
  */
 
+// Sécurité : empêche l'accès direct au fichier
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
 /**
- * Remove WordPress version from head and feeds
+ * Supprimer la version de WordPress du head et des flux RSS
+ * Empêche les attaquants de connaître la version exacte de WordPress
  */
 function ac_remove_wp_version() {
     return '';
@@ -18,7 +28,8 @@ function ac_remove_wp_version() {
 add_filter( 'the_generator', 'ac_remove_wp_version' );
 
 /**
- * Remove version from scripts and styles
+ * Supprimer la version des scripts et styles
+ * Masque la version des fichiers CSS/JS pour plus de sécurité
  */
 function ac_remove_version_scripts_styles( $src ) {
     if ( strpos( $src, 'ver=' ) ) {
@@ -30,12 +41,14 @@ add_filter( 'style_loader_src', 'ac_remove_version_scripts_styles', 9999 );
 add_filter( 'script_loader_src', 'ac_remove_version_scripts_styles', 9999 );
 
 /**
- * Disable XML-RPC
+ * Désactiver XML-RPC
+ * Prévient les attaques par force brute via XML-RPC
  */
 add_filter( 'xmlrpc_enabled', '__return_false' );
 
 /**
- * Remove X-Pingback header
+ * Supprimer l'en-tête X-Pingback
+ * Empêche les attaques DDoS via pingback
  */
 function ac_remove_x_pingback( $headers ) {
     unset( $headers['X-Pingback'] );
@@ -44,7 +57,8 @@ function ac_remove_x_pingback( $headers ) {
 add_filter( 'wp_headers', 'ac_remove_x_pingback' );
 
 /**
- * Disable author archives to prevent user enumeration
+ * Désactiver les archives d'auteur pour empêcher l'énumération des utilisateurs
+ * Empêche les attaquants de découvrir les noms d'utilisateur via les URLs
  */
 function ac_disable_author_archives() {
     if ( is_author() ) {
@@ -57,7 +71,8 @@ function ac_disable_author_archives() {
 add_action( 'template_redirect', 'ac_disable_author_archives' );
 
 /**
- * Remove login error messages (security)
+ * Supprimer les messages d'erreur de connexion détaillés
+ * Empêche les attaquants de savoir si un nom d'utilisateur existe
  */
 function ac_login_error_message() {
     return __( 'Identifiants incorrects.', 'armando-castanheira' );
@@ -65,7 +80,8 @@ function ac_login_error_message() {
 add_filter( 'login_errors', 'ac_login_error_message' );
 
 /**
- * Add security headers
+ * Ajouter des en-têtes de sécurité HTTP
+ * Protège contre XSS, clickjacking et autres attaques
  */
 function ac_security_headers() {
     if ( ! is_admin() ) {
@@ -78,22 +94,23 @@ function ac_security_headers() {
 add_action( 'send_headers', 'ac_security_headers' );
 
 /**
- * Sanitize file uploads
+ * Nettoyer les noms de fichiers uploadés
+ * Supprime les caractères spéciaux et accents pour éviter les problèmes
  */
 function ac_sanitize_file_name( $filename ) {
-    // Remove accents
+    // Supprimer les accents
     $filename = remove_accents( $filename );
     
-    // Convert to lowercase
+    // Convertir en minuscules
     $filename = strtolower( $filename );
     
-    // Replace spaces with dashes
+    // Remplacer les espaces par des tirets
     $filename = preg_replace( '/\s+/', '-', $filename );
     
-    // Remove special characters
+    // Supprimer les caractères spéciaux
     $filename = preg_replace( '/[^a-z0-9\-\_\.]/', '', $filename );
     
-    // Remove multiple dashes
+    // Supprimer les tirets multiples
     $filename = preg_replace( '/-+/', '-', $filename );
     
     return $filename;
@@ -101,8 +118,10 @@ function ac_sanitize_file_name( $filename ) {
 add_filter( 'sanitize_file_name', 'ac_sanitize_file_name', 10 );
 
 /**
- * Limit login attempts (basic implementation)
- * For production, consider using a dedicated plugin
+ * Limiter les tentatives de connexion (implémentation basique)
+ * 
+ * Bloque temporairement les IP après 5 tentatives échouées.
+ * Pour la production, envisagez d'utiliser un plugin dédié comme Wordfence.
  */
 function ac_limit_login_attempts() {
     $ip = $_SERVER['REMOTE_ADDR'];
@@ -137,7 +156,8 @@ function ac_track_failed_login( $username ) {
 }
 
 /**
- * Clear login attempts on successful login
+ * Effacer les tentatives de connexion après une connexion réussie
+ * Réinitialise le compteur pour l'IP de l'utilisateur
  */
 function ac_clear_login_attempts( $user_login, $user ) {
     $ip = $_SERVER['REMOTE_ADDR'];

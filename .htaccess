@@ -1,0 +1,142 @@
+# BEGIN WordPress
+# Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
+# dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
+# Toute modification des directives situées entre ces marqueurs sera surchargée.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+# ==============================================================================
+# SÉCURITÉ
+# ==============================================================================
+
+# Désactiver l'affichage des répertoires
+Options -Indexes
+
+# Protéger le fichier wp-config.php
+<Files wp-config.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protéger le fichier .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Bloquer l'accès aux fichiers sensibles
+<FilesMatch "^(readme\.html|readme\.txt|license\.txt|wp-config-sample\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protéger contre les injections de scripts
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
+    RewriteRule ^(.*)$ index.php [F,L]
+</IfModule>
+
+# Désactiver l'exécution de PHP dans les dossiers d'upload
+<IfModule mod_rewrite.c>
+    RewriteRule ^wp-content/uploads/.*\.php$ - [F,L]
+</IfModule>
+
+# ==============================================================================
+# PERFORMANCE & CACHE
+# ==============================================================================
+
+# Activer la compression GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml application/xhtml+xml application/rss+xml
+</IfModule>
+
+# Cache navigateur - Expiration des fichiers statiques
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS et JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Polices
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # HTML et XML
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/xml "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+    
+    # Défaut
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# En-têtes de cache
+<IfModule mod_headers.c>
+    # Cache pour les fichiers statiques
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+    
+    # Pas de cache pour les fichiers dynamiques
+    <FilesMatch "\.(php|html)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+    
+    # Sécurité supplémentaire
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ==============================================================================
+# OPTIMISATIONS
+# ==============================================================================
+
+# Désactiver ETags (améliore la mise en cache)
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# Limiter la taille des uploads (ajustez selon vos besoins)
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# ==============================================================================
+# REDIRECTIONS HTTPS (décommentez si vous avez un certificat SSL)
+# ==============================================================================
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
